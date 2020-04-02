@@ -5,8 +5,7 @@
 - Variable in C/C++
 
 ``` c++
-int a = 1;
-int b = 2.5; 
+int a = 1;fint b = 2.5; 
 int c = 3, d = 4;
 ```
 
