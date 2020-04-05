@@ -1,6 +1,6 @@
 # SE_03_TP
 
-## 2. Input and Output Command variable to screen
+## 0. Input and Output Command variable to screen
 
 - Output/Print value to screen
 
@@ -54,11 +54,20 @@
 ```python
     
     print("Hello", "how are you?")
+    # Hello how are you?
     
     x = ("apple", "banana", "cherry")
     print(x)
+    # apple banana cherry
 
-    print("Hello", "how are you?", sep="---")
+    print("Hello", "how are you?", sep=" -> ")
+    # Hello -> how are you?
+
+    a = 1
+    b = 2.5
+    c = 'k'
+    print("List of value: %d, %f, %c" %(a, b, c))
+    # List of value: 1, 2.5, k
 ```
 
 - Input/Scan value from screen
@@ -159,7 +168,7 @@ def MAX()
 a = 100 + MAX()
 ```
 
-## Operator
+## 3. Operator
 
 - Operator two argument: + - * / % (integer)
     - a = 4 + 5 = 9
@@ -256,4 +265,139 @@ a = 100 + MAX()
     a *= 3         # a = a * 3 = 9 * 3 = 27
     a /= 2         # a = a / 2 = 27 / 2 = 13
     a %= 2         # a = a % 2 = 13 % 2 =  1  
+```
+## 4. Control Flow
+
+### 4.1 **IF ...  ELSE ...** statement
+
+```c++
+    // C/C++ language
+    // case 01
+    if (condition)
+    {
+        // do if condition is true
+    }
+
+    // case 02
+    if (condition)
+    {
+        // do if condition is true
+    }
+    else
+    {
+        // do if condition is false
+    }
+
+    if (condition_01)
+    {
+        // do if condition_01 is true
+    }
+    else
+    {
+        // do if condition_01 is false
+        if (condition_02)
+        {
+            // do if condition_02 is true (and condition_01 is false)
+        }
+        else
+        {
+            // do if condition_02 is false (and condition_01 is false)
+        }
+    }
+
+```
+
+```python
+    # Python language
+    # case 01
+    if condition:
+        # do if condition is true
+
+    # case 02
+    if condition:
+        # do if condition is true
+    else:
+        # do if condition is false
+
+    # case 03
+    if condition_01:
+        # do if condition_01 is true
+    elif condition_02:
+        # do if condition_02 is true (and condition_01 is false)
+    else:
+        # do if condition_02 is false (and condition_01 is false)
+```
+
+### 4.2 **SWITCH ...  CASE ...** statement
+
+```c++
+    // C/C++ language
+    int n;
+
+    // case 01
+    switch(n)
+    {
+        case 1:
+            // do with n = 1
+            break;
+        case 2:
+            // do with n = 2
+            break;
+        case 3:
+            // do with n = 3
+            break;
+    }
+    // if n == 4, switch don't something
+
+    // case 02
+    switch(n)
+    {
+        case 1:
+            // do with n = 1
+            break;
+        case 2:
+            // do with n = 2
+            break;
+        case 3:
+            // do with n = 3
+            break;
+        default:
+            // do with n != [1, 2, 3]
+    }
+
+    // case 03 - special
+    switch(n)
+    {
+        case 1:
+        case 2:
+            // do with n = 1 or n = 2
+            break;
+        case 3:
+            // do with n = 3 and after do with command of n = 3 because not break in case 03
+        case 4:
+            // do with n = 4
+            break;
+        default:
+            // do with n != [1, 2, 3, 4]
+    }
+
+```
+
+```python
+    # Python language
+    # python don't support Switch ... case ... statement
+
+    # Switch case in python is replacement
+    def numbers_to_string(argument):
+        switcher = {
+            0 : "Zero",
+            1 : "One", 
+            2 : "Two"
+        }
+        return switcher.get(i, "Show message error: value is not exist in switcher")
+
+    
+    print(numbers_to_string(2))
+
+    # Best practice: we should user IF statem replace SWITCH in python
 ```
