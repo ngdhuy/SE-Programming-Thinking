@@ -401,3 +401,27 @@ a = 100 + MAX()
 
     # Best practice: we should user IF statem replace SWITCH in python
 ```
+
+---
+**NOTE: Character (ASCII)**
+
+- C/C++ language: 
+
+```c++
+Format: "%c" 
+Type: char
+Size of char: 1 byte
+Default: character is ASCII code
+```
+
+- Python language:
+
+```python
+Default: string
+Get 1 character from string at index 0: string[0]
+Convert Character to ASCII code: ord(char)
+Convert ASCII code to Character: chr(ASCII_Code)
+Default ASCII code is integer
+```
+
+---
