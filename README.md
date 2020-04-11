@@ -478,7 +478,7 @@ Default ASCII code is integer
     array = [1 , 2, 3, 4, 5]
 
     for item in arr:
-        print("%d " %(item))
+        print("%d" %(item))
     # 1 2 3 4 5
 
     range(5)
@@ -488,8 +488,14 @@ Default ASCII code is integer
     # 5 6 7 8
 
     for item in range(5):
-        print("%d " %(item))
+        print("%d" %(item))
     # 0 1 2 3 4
+
+    for item in range(5):
+        print("%d" %(item))
+    else: 
+        print("End")
+    # 0 1 2 3 4 End
 ```
 
 #### 5.2.2 While (...) statement
@@ -500,6 +506,14 @@ Default ASCII code is integer
         print(n)
         n -= 2
     # 10 8 6 4 2
+
+    n = 5
+    while n > 0:
+        print("%d" %(n))
+        n -= 2
+    else:
+        print("End")
+    # 5 3 1 End
 ```
 
 - Python don't support ``` do ... while()``` statement
