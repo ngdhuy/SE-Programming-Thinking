@@ -425,3 +425,92 @@ Default ASCII code is integer
 ```
 
 ---
+
+## 5. Loop control
+### 5.1 C/C++ language
+#### 5.1.1 For(...) statement
+
+```c++
+    int i; 
+    for(i = 0; i < 10; i++)
+        printf("%d \t", i);
+    // 0 1 2 3 4 5 6 7 8 9
+
+    for(int j = 0; j < 10; j += 2)
+        printf("%d \t", j);
+    // 0 2 4 6 8
+
+    int k = 1;
+    for(; k < 10;)
+    {
+        printf("%d \t", k);
+        k += 2;
+    }
+    // 1 3 5 7 9
+```
+
+#### 5.1.2 While(...) statement
+
+```c++
+    int k = 1; 
+    while(k < 0)
+    {
+        printf("%d\t", k);
+        k++;
+    }
+```
+
+#### 5.1.3 Do { ... } While (...) statement
+
+```c++
+    int n;
+    do
+    {
+        printf("Enter an integer n >= 0: ");
+        scanf("%d", &n);
+    } while (n < 0);
+```
+
+### 5.2 Python language
+#### 5.2.1 For ... in ... statement
+
+```python
+    array = [1 , 2, 3, 4, 5]
+
+    for item in arr:
+        print("%d " %(item))
+    # 1 2 3 4 5
+
+    range(5)
+    # 0 1 2 3 4
+
+    range(5, 4)
+    # 5 6 7 8
+
+    for item in range(5):
+        print("%d " %(item))
+    # 0 1 2 3 4
+```
+
+#### 5.2.2 While (...) statement
+
+```python
+    n = 10
+    while n > 0:
+        print(n)
+        n -= 2
+    # 10 8 6 4 2
+```
+
+- Python don't support ``` do ... while()``` statement
+- So customize ``` do ... while () ``` for python
+
+```python
+    i = 1
+    while True:
+        print("%d " %(i))
+        i += 1
+        if(i > 5)
+            break # break of While loop
+    # 1 2 3 4 5
+```
