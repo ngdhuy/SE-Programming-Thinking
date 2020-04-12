@@ -528,3 +528,51 @@ Default ASCII code is integer
             break # break of While loop
     # 1 2 3 4 5
 ```
+
+### 5.3 Break/Continue statement
+
+- **Break**: break and exit loop control flow.
+- **Continue**: Skip current flow and go to next flow.
+
+```c++
+    // C/C++ language
+    for(int i = 0; i < 10; i++)
+    {
+        if (i == 5)
+            continue;
+        printf("%d\t", i);
+    }
+    // 0 1 2 3 4 6 7 8 9
+
+    for(int i = 0; i < 10; i++)
+    {
+        if (i == 5)
+        {
+            printf("Break here\n");
+            break;
+        }
+    
+        printf("%d\t", i);
+    }
+    // 0 1 2 3 4 Break here
+```
+
+```python
+    #  Python language
+    for i in range(10):
+        if (i == 5):
+            continue
+
+        print(i)
+
+    # 0 1 2 3 4 6 7 8 9
+
+    for i in range(10):
+        if (i == 5):
+            print("Break here")
+            break
+
+        print(i)
+
+    #  1 2 3 4 Break here
+```
