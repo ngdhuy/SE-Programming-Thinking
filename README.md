@@ -576,3 +576,180 @@ Default ASCII code is integer
 
     #  1 2 3 4 Break here
 ```
+
+## 6. Function
+### 6.1 Basic
+
+- C/C++ Language
+
+```c++
+    void printMessage(int n)
+    {
+        printf("Value of N = %d", n);
+    }
+
+    int Sum(int x, int y)
+    {
+        int s = x + y;
+        return s;
+    }
+```
+
+- Python Language
+
+```python
+    def printMessage(n):
+        print("Value of N = %d" %(n))
+
+    def Sum(x, y):
+        s = x + y
+        return s
+```
+
+### 6.2 Add function to Program
+
+- C/C++ language
+
+```c++
+#include <stdio.h>
+
+// -- Prototype --
+int input();
+int Sum(int a, int b);
+void output(int a, int b, int c);
+
+// -- Main function where is start program
+int main()
+{
+    int a; 
+    int b;
+    int sum; 
+
+    // Input
+    a = input();
+    b = input();
+
+    // Calculate
+    sum = Sum(a, b);
+
+    // Out
+    output(a, b, sum);
+
+    return 0;
+}
+
+// -- implement functions
+int input()
+{
+    int n;
+    printf("Enter n = ");
+    scanf("%d", &n);
+    return n;
+}
+
+int Sum(int a, int b)
+{
+    int sum = a + b;
+    return sum;
+}
+
+void output(int a, int b, int c)
+{
+    printf("s = %d + %d = %d", a, b, c);
+}
+
+```
+
+- Python language
+
+```python
+def myInput():
+    n = int(input("Enter n = "))
+    return n
+
+def sum(x, y):
+    return x + y
+
+def myOutput(a, b, c):
+    print("sum = %d + %d = %d" %(a, b, c))
+
+def main():
+    a = myInput()
+    b = myInput()
+    s = sum(a, b)
+    myOutput(a, b, s)
+
+if __name__ == "__main__":
+    main()
+```
+
+### 6.3 Parameter by Value/Reference
+- C/C++ language
+
+```c++
+#include <stdio.h>
+
+// --- Prototype
+int doubleValue(int n);     // --> Pass by Value
+int tribleValue(int &n);    // --> Pass by Reference 
+
+// --- Main function
+int main()
+{
+    int a = 2;
+    int b = doubleValue(a);
+    printf("main: a = %d\n", a);
+    printf("main: b = %d\n", b);
+
+    printf("\n-------------------------\n");
+    
+    int c = tribleValue(a);
+    printf("main: a = %d\n", a);
+    printf("main: c = %d\n", c);
+    return 0;
+}
+
+// --- Implement function
+//  ---> Pass by Value
+int doubleValue(int n)
+{
+    n = n * 2;
+    printf("--> doubleValue: %d\n", n);
+    return n;
+}
+
+// ---> Pass by Reference
+int tribleValue(int &n)
+{
+    n = n * 3;
+    printf("--> tribleValue: %d\n", n);
+    return n;
+}
+```
+
+- Python language
+
+```python
+    # ---> Pass by Value
+    def doubleValue(n):
+        n = n * 2
+        print("--> n = %d" %(n))
+        return n
+
+    # ---> Pass by Reference
+    def tribleValue(n):
+        n.append("Hello world")
+        print(n)
+
+    def main():
+        a = 2
+        b = doubleValue(a)
+        print("a = %d" %(a))
+        print("b = %d" %(b))    
+        c = []
+        tribleValue(c)
+        print(c)
+
+    if __name__ == "__main__":
+        main()
+```
