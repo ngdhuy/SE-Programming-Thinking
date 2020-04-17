@@ -611,120 +611,120 @@ Default ASCII code is integer
 - C/C++ language
 
 ```c++
-#include <stdio.h>
+    #include <stdio.h>
 
-// -- Prototype --
-int input();
-int Sum(int a, int b);
-void output(int a, int b, int c);
+    // -- Prototype --
+    int input();
+    int Sum(int a, int b);
+    void output(int a, int b, int c);
 
-// -- Main function where is start program
-int main()
-{
-    int a; 
-    int b;
-    int sum; 
+    // -- Main function where is start program
+    int main()
+    {
+        int a; 
+        int b;
+        int sum; 
 
-    // Input
-    a = input();
-    b = input();
+        // Input
+        a = input();
+        b = input();
 
-    // Calculate
-    sum = Sum(a, b);
+        // Calculate
+        sum = Sum(a, b);
 
-    // Out
-    output(a, b, sum);
+        // Out
+        output(a, b, sum);
 
-    return 0;
-}
+        return 0;
+    }
 
-// -- implement functions
-int input()
-{
-    int n;
-    printf("Enter n = ");
-    scanf("%d", &n);
-    return n;
-}
+    // -- implement functions
+    int input()
+    {
+        int n;
+        printf("Enter n = ");
+        scanf("%d", &n);
+        return n;
+    }
 
-int Sum(int a, int b)
-{
-    int sum = a + b;
-    return sum;
-}
+    int Sum(int a, int b)
+    {
+        int sum = a + b;
+        return sum;
+    }
 
-void output(int a, int b, int c)
-{
-    printf("s = %d + %d = %d", a, b, c);
-}
+    void output(int a, int b, int c)
+    {
+        printf("s = %d + %d = %d", a, b, c);
+    }
 
 ```
 
 - Python language
 
 ```python
-def myInput():
-    n = int(input("Enter n = "))
-    return n
+    def myInput():
+        n = int(input("Enter n = "))
+        return n
 
-def sum(x, y):
-    return x + y
+    def sum(x, y):
+        return x + y
 
-def myOutput(a, b, c):
-    print("sum = %d + %d = %d" %(a, b, c))
+    def myOutput(a, b, c):
+        print("sum = %d + %d = %d" %(a, b, c))
 
-def main():
-    a = myInput()
-    b = myInput()
-    s = sum(a, b)
-    myOutput(a, b, s)
+    def main():
+        a = myInput()
+        b = myInput()
+        s = sum(a, b)
+        myOutput(a, b, s)
 
-if __name__ == "__main__":
-    main()
+    if __name__ == "__main__":
+        main()
 ```
 
 ### 6.3 Parameter by Value/Reference
 - C/C++ language
 
 ```c++
-#include <stdio.h>
+    #include <stdio.h>
 
-// --- Prototype
-int doubleValue(int n);     // --> Pass by Value
-int tribleValue(int &n);    // --> Pass by Reference 
+    // --- Prototype
+    int doubleValue(int n);     // --> Pass by Value
+    int tribleValue(int &n);    // --> Pass by Reference 
 
-// --- Main function
-int main()
-{
-    int a = 2;
-    int b = doubleValue(a);
-    printf("main: a = %d\n", a);
-    printf("main: b = %d\n", b);
+    // --- Main function
+    int main()
+    {
+        int a = 2;
+        int b = doubleValue(a);
+        printf("main: a = %d\n", a);
+        printf("main: b = %d\n", b);
 
-    printf("\n-------------------------\n");
-    
-    int c = tribleValue(a);
-    printf("main: a = %d\n", a);
-    printf("main: c = %d\n", c);
-    return 0;
-}
+        printf("\n-------------------------\n");
+        
+        int c = tribleValue(a);
+        printf("main: a = %d\n", a);
+        printf("main: c = %d\n", c);
+        return 0;
+    }
 
-// --- Implement function
-//  ---> Pass by Value
-int doubleValue(int n)
-{
-    n = n * 2;
-    printf("--> doubleValue: %d\n", n);
-    return n;
-}
+    // --- Implement function
+    //  ---> Pass by Value
+    int doubleValue(int n)
+    {
+        n = n * 2;
+        printf("--> doubleValue: %d\n", n);
+        return n;
+    }
 
-// ---> Pass by Reference
-int tribleValue(int &n)
-{
-    n = n * 3;
-    printf("--> tribleValue: %d\n", n);
-    return n;
-}
+    // ---> Pass by Reference
+    int tribleValue(int &n)
+    {
+        n = n * 3;
+        printf("--> tribleValue: %d\n", n);
+        return n;
+    }
 ```
 
 - Python language
@@ -753,3 +753,261 @@ int tribleValue(int &n)
     if __name__ == "__main__":
         main()
 ```
+### 6.4 Special case
+- Parmeter is  Pointer in C/C++ language
+
+```c++
+// --- C/C++ Language
+    #include <stdio.h>
+
+    // --- Prototype
+    void Swap(int &a, int &b);
+    void Swap_02(int *a, int *b);
+
+    // --- Main function 
+    int main()
+    {
+        int a = 10; 
+        int b = 5; 
+        printf("a = %d, b = %d\n", a, b);
+        Swap(a, b);
+        printf("a = %d, b = %d\n", a, b);
+        int c = 8; 
+        int d = 9;
+        printf("c = %d, d = %d\n", c, d);
+        Swap_02(&c, &d);
+        printf("c = %d, d = %d\n", c, d);
+        return 0;
+    }
+
+    // --- Implement function
+    void Swap(int &a, int &b)
+    {
+        int temp = a;
+        a = b;
+        b = temp;
+    }
+
+    // --- swap with pointer
+    void Swap_02(int *a, int *b)
+    {
+        int temp = *a;
+        *a = *b;
+        *b = temp;
+    }
+```
+
+- Overload function
+
+```c++
+    // --- C/C++ language
+    //#include <stdio.h>
+    #include <iostream>
+
+    // --- Prototype
+    int Sum(int a, int b);
+    float Sum(float a, float b);
+
+    // -- Defautl parameter
+    int Div(int a, int b = 1)
+    {
+        return a / b;
+    }
+
+    // --- Main function
+    int main()
+    {
+        int a = 4; 
+        int b = 5;
+        int c = Sum(a, b);
+        printf("sum = %d + %d = %d\n", a, b, c);
+
+        float d = 3.5; 
+        float e = 2.4;
+        printf("sum = %f + %f = %f\n", d, e, Sum(d, e));
+
+        printf("div = %d / %d = %d\n", a, b, Div(a , b));
+        printf("div = %d / %d = %d\n", a, b, Div(a));       // --> Default parameter b = 1
+
+        return 0;
+    }
+
+    // --- Implement functions
+    int Sum(int a, int b)
+    {
+        printf("--> Sum INT\n");
+        return a + b;
+    }
+
+    float Sum(float a, float b)
+    {
+        printf("--> Sum FLOAT\n");
+        return a + b;
+    }
+```
+
+```python
+    # Python language
+    # Default parameter -> Overload function in python
+    def sum(a, b, c = 1):
+        print("-> Sum 02")
+        return a + b + c
+
+    def main():
+        a = 5
+        b = 4
+        c = 6
+        print("Sum = %d + %d = %d" %(a, b, sum(a, b)))
+        print("Sum = %d + %d + c= %d" %(a, b, sum(a, b, c)))
+
+    if __name__ == "__main__":
+        main()
+```
+---
+    Python have no overload function. You can use default parmeter to do that
+---
+
+### 6.5 Create Project structure
+#### 6.5.1 C/C++language
+    - Create project __Library__:
+        - file __.h__: define header file --> Prototype functions
+        - file __.cpp__: define implement functions
+    - file __main.cpp__: is main function
+    - Project structure:
+        - folder __bin__: contain execute file (after compile) --> exe file
+        - folder __include__: contain header file (.h)
+        - folder __src__: contain source file (.cpp)
+
+```shell
+    # Command to compile project C/C++
+    $ clang++ -g ./src/*.cpp -I ./include/ -o ./bin/main
+
+    # Command to execute file after compile
+    $ ./bin/main
+``````
+- File __include/lib.h__: define prototype for function
+```c++
+    // file include/lib.h
+    // --- define macro for library information
+    #ifndef __LIB_H__
+    #define __LIB_H__
+
+    // --- include core library for Lib
+    #include <stdio.h>
+
+    // --- Prototype of function
+    
+    void Swap(int &a, int &b);
+    int Sum(int a, int b, int c);
+    int Div(int a);
+    int Div(int a, int b);
+
+    #endif
+```
+
+- File __src/lib.cpp__: implement function
+
+```c++
+    // file src/lib.cpp
+    #include "lib.h"
+
+    void Swap(int &a, int &b)
+    {
+        int temp = a; 
+        a = b; 
+        b = temp;
+    }
+
+    int Sum(int a, int b, int c)
+    {
+        return a + b + c;
+    }
+
+    int Div(int a)
+    {
+        return a / 1;
+    }
+
+    int Div(int a, int b)
+    {
+        return a / b;
+    }
+```
+
+- File __src/main__: define main function of program
+
+```c++
+    #include <stdio.h>
+    #include "lib.h"    // include my library
+
+    int main()
+    {
+        int a = 8; 
+        int b = 3;
+
+        Swap(a, b);
+        printf("a = %d, b = %d \n", a, b);
+
+        int c = 2;
+        int d = Sum(a, b, c);
+        printf("Sum = %d + %d + %d = %d \n", a, b, c, d);
+        int e = Div(a);
+        printf("Div = %d = %d \n", a, e);
+        int f = Div(a, b);
+        printf("Div = %d / %d = %d \n", a, b, f);
+
+        return 0;
+    }
+```
+
+- Compile: ```$ clang++ -g ./src/*.cpp -I ./include/ -o ./bin/main```
+
+#### 6.5.2 Python language
+- Project struture:
+    - folder __lib/module__: contain modules of libraries python file
+    - file __main.python__: contain main function
+
+- file __lib/module.python__
+
+```python
+    # file lib/module.python
+    def Sum(a, b):
+    return a + b
+
+    def Div(a, b = 1):
+        return a / b
+```
+
+- file __main.python__
+
+```python
+    # file main.python
+    from lib import module as myLib
+    # import lib.module as myLib
+    
+    def main():
+        a = 4 
+        b = 3
+
+        c = myLib.Sum(a , b)
+        print("sum = %d + %d = %d" %(a, b, c))
+
+        d = myLib.Div(a)
+        print("div = %d = %d" %(a, d))
+
+        e = myLib.Div(a, b)
+        print("div = %d / %d = %d" %(a, b, e))
+
+
+    if __name__ == "__main__":
+        main()
+```
+
+- Note to import module/lib to main file
+    - Case 01: ```from lib import moudule as myLib```
+    - Case 02: ```import lib.moudle as myLib```
+    - Case 03: ```from lib import *```
+    - Case 04: 
+        - Create empty file ```lib/__init__.python```
+        - Create library file ```lib/module.python```
+        - In main.python file: ```import module```
