@@ -32,11 +32,11 @@
     | p                     | Writes an implementation defined character sequence  |defining a pointer. |
 
 - **Characteristics "\\"**:
-    | Format Specifier      | Description               |
-    |-----------------------|---------------------------|
-    | \n                    | break line                |
-    | \t                    | tab                       |
-    | \\\                   | print special character \\|
+    | Format Specifier      | Description                |
+    |-----------------------|----------------------------|
+    | \n                    | break line                 |
+    | \t                    | tab                        |
+    | \\\                   | print special character \\ |
 
 
     - Python
@@ -71,9 +71,8 @@
 ```
 
 - Input/Scan value from screen
-    - C/C++
 
-``` scanf("String format", address of variable) ```
+- C/C++ language: ``` scanf("String format", address of variable) ```
 
 ```c++
     int a;
@@ -85,7 +84,7 @@
     scanf("%f", &b);
 ```
 
-    - Python
+- Python language:
 
 ```python
     # version Python 3.6
@@ -288,6 +287,7 @@ a = 100 + MAX()
         // do if condition is false
     }
 
+    // case 03
     if (condition_01)
     {
         // do if condition_01 is true
