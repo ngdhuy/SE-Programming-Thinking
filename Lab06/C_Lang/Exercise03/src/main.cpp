@@ -32,6 +32,24 @@ int main()
 
     printf("%s\n", t);
 
+    int m = 4; 
+    int n = 3;
+    int a[n][m];
+
+    int *p = (int *)a;
+
+    for(int i = 0; i < n * m; i++)
+    {
+        *(p + i) = i;
+    }
+
+    for(int i = 0; i < n * m; i++)
+    {
+        if(i % m == 0)
+            printf("\n");
+        printf("%d\t", *(p + i));
+    }
+    
     printf("\n");
     return 0;
 }

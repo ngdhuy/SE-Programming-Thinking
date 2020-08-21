@@ -12,6 +12,7 @@ int Modulus(int a, int b);
 void Factor(int n);
 float Power(float base, int exponent);
 char* ItoA(int i);
+char* Revert(char *s);
 
 int main()
 {
@@ -28,54 +29,83 @@ int main()
     float power = Power(c, d);
     printf("%2.2f ^ %d = %2.2f \n", c, d, power);
 
-    int e = 123;
-    printf("%s \n", ItoA(e));
+    int e = 12300;
+    printf("ItoA = %s \n", ItoA(e));
+    
+    char *s = (char*)malloc(12 * sizeof(char));
+    strcpy(s, "Hello World!");
+    printf("=> %s", Revert(s));
+
     printf("\n");
     return 0;
 }
 
+char* Revert(char *s)
+{
+    char *c = (char*)malloc(sizeof(char));
+    if(strlen(s) == 0)
+    {
+        strcpy(c, "");
+        return c;
+    }
+
+    int sLength = strlen(s);
+    memcpy(c, &s[sLength - 1], 1);
+
+    char *sub = (char*)malloc((sLength - 1) * sizeof(char));
+    memcpy(sub, &s[0], sLength - 1);
+    
+    return strcat(c, Revert(sub));
+}
+
 char* ItoA(int i)
 {
+    char *c = (char *)malloc(sizeof(char));
+    
     if(i == 0)
-        return "\0";
+    {
+        strcpy(c,"");
+        return c;
+    }
 
-    char *c;
     switch(i % 10)
     {
         case 0:
-            c = "0";
+            strcpy(c,"0");
             break;
         case 1:
-            c = "1";
+            strcpy(c,"1");
             break;
         case 2:
-            c = "2";
+            strcpy(c,"2");
             break;
         case 3: 
-            c = "3";
+            strcpy(c,"3");
             break;
         case 4:
-            c = "4";
+            strcpy(c,"4");
             break;
         case 5:
-            c = "5";
+            strcpy(c,"5");
             break;
         case 6:
-            c = "6";
+            strcpy(c,"6");
             break;
         case 7:
-            c = "7";
+            strcpy(c,"7");
             break;
         case 8:
-            c = "8";
+            strcpy(c,"8");
             break;
         case 9:
-            c = "9";
+            strcpy(c,"9");
             break;
     }
-    printf("%s \t", c);
-    return strcat(ItoA(i / 10),c);
+    
+    return strcat(ItoA(i / 10), c);
 }
+
+
 
 float Power(float base, int exponent)
 {
