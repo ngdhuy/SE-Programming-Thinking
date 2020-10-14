@@ -56,7 +56,7 @@ bool myFile::Read_BinaryFile(char* fileName, Student* arrStudent, int &numStuden
     if(f.is_open())
     {
         int i = 0;
-        while(f.read((char*)&arrStudent[i], sizeof(int)))
+        while(f.read((char*)&arrStudent[i], sizeof(Student)))
         {
             cout << arrStudent[i].id << " - " << arrStudent[i].name << endl;
             i++;
@@ -72,7 +72,7 @@ bool myFile::Write_BinaryFile(char* fileName, Student* arrStudent, const int num
     f.open(fileName, ios::out | ios::binary);
     for(int i = 0; i < numStudent; i++)
     {
-        f.write((char*)&arrStudent[i], sizeof(int));
+        f.write((char*)&arrStudent[i], sizeof(Student));
     }
     f.close();
     return true;

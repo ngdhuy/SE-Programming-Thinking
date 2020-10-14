@@ -23,19 +23,19 @@ int main(int argc, char** argv)
         arrStudent[i].name = "No name" + to_string(i);
     }
 
-    // myFile::Write_BinaryFile(argv[1], arrStudent, numStudent);
-    // myFile::Read_BinaryFile(argv[1], arrStudent, numStudent);
+    myFile::Write_BinaryFile(argv[1], arrStudent, numStudent);
+    myFile::Read_BinaryFile(argv[1], arrStudent, numStudent);
 
-    myFile::Write_TextFile(argv[1], arrStudent, numStudent);
+    // myFile::Write_TextFile(argv[1], arrStudent, numStudent);
     
-    myFile::Student* lstStudent = (myFile::Student*)malloc(MAX * sizeof(myFile::Student));
-    int num_lstStudent = 0;
+    // myFile::Student* lstStudent = (myFile::Student*)malloc(MAX * sizeof(myFile::Student));
+    // int num_lstStudent = 0;
 
-    myFile::Read_TextFile(argv[1], lstStudent, num_lstStudent);
-    for(int i = 0; i < num_lstStudent; i++)
-    {
-        cout << lstStudent[i].id << ". " << lstStudent[i].name << endl;
-    }
+    // myFile::Read_TextFile(argv[1], lstStudent, num_lstStudent);
+    // for(int i = 0; i < num_lstStudent; i++)
+    // {
+    //     cout << lstStudent[i].id << ". " << lstStudent[i].name << endl;
+    // }
     
     return 0;
 }
