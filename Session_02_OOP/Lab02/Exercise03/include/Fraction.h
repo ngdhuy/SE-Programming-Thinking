@@ -1,30 +1,16 @@
-# OOP - Object Oriented Programming - Basic
+//
+//  Created by NDHuy on 21/10/2020
+//  Copyright 2020 by SEstudio
+//  Introduce to OOP (cont.) - Object Oriented Programming
+//
 
-## Class vs Object    
-* Class -> Template/Type
-    * No have memory
-* Object is instant of Class ~ variable with type (CLASS)
-    * Object have memory
+#include <iostream>
+#include <string>
 
-## Define class
-* __Scope__
-    * Private (default)
-    * Public
-    * Protected
+#pragma once
 
-* Class
-    * Attributes
-    * Methods
-        * Constructor -> new object
-            * Default Constructor
-            * Constructor with parameter (list of value of Attributes)
-            * Copy Constructor
-        * ~Destructor
-        * Getter -> return value of Attributes
-        * Setter -> set value for Attributes
-        * Business methods
-    
-```c++
+using namespace std;
+
 class Fraction
 {
     // Attributes
@@ -56,5 +42,15 @@ class Fraction
         Fraction* Sub(const Fraction &fraction);
         Fraction* Mul(const Fraction &fraction);
         Fraction* Div(const Fraction &fraction);
+
+        // Operator - 2 parameter
+        Fraction* operator+(Fraction &fraction);
+        Fraction* operator-(Fraction &fraction);
+        Fraction* operator*(Fraction &fraction);
+        Fraction* operator/(Fraction &fraction);
+        
+
+        // Streaming Operator output stream <<, inputstream >>
+        friend ostream& operator<<(ostream &os, Fraction &fraction);
+        friend istream& operator>>(istream &is, Fraction &fraction);
 };
-```
