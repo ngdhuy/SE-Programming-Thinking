@@ -21,9 +21,9 @@ class Fraction
     // Methods
     public:
         // Constructor
-        Fraction();                                             // default constructor
-        Fraction(const int &numerator, const int &denominator);   // constructor with paramters
-        Fraction(const Fraction &fraction);                     // copy constructor
+        Fraction();                                                 // default constructor
+        Fraction(const int& numerator, const int& denominator);     // constructor with paramters
+        Fraction(const Fraction& fraction);                         // copy constructor
 
         // Destructor
         ~Fraction();
@@ -33,25 +33,56 @@ class Fraction
         int GetDenominator();
 
         // Setter
-        void SetNumerator(const int &value);
-        void SetDenominator(const int &value);
+        void SetNumerator(const int& value);
+        void SetDenominator(const int& value);
 
         // Business
         string ToString();
-        Fraction* Add(const Fraction &fraction);
-        Fraction* Sub(const Fraction &fraction);
-        Fraction* Mul(const Fraction &fraction);
-        Fraction* Div(const Fraction &fraction);
-
+        void optimize();
+        
         // Operator - 2 parameter
         Fraction* operator+(Fraction &fraction);
         Fraction* operator-(Fraction &fraction);
         Fraction* operator*(Fraction &fraction);
         Fraction* operator/(Fraction &fraction);
 
-        void optimize();
+        
+        Fraction& Add(const Fraction& fraction);
+        Fraction& Sub(const Fraction& fraction);
+        Fraction& Mul(const Fraction& fraction);
+        Fraction& Div(const Fraction& fraction);
+
+        // Operator - 2 parameters
+        Fraction& operator+(const Fraction& fraction);
+        Fraction& operator-(const Fraction& fraction);
+        Fraction& operator*(const Fraction& fraction);
+        Fraction& operator/(const Fraction& fraction);
+
+        // Operator - 0 parameter
+        Fraction& operator++();     // Define prefix increment operator -> ++frac
+        Fraction  operator++(int);  // Define postfix increment operator -> frac++
+        Fraction& operator--();     // Define prefix decrement operator -> --frac
+        Fraction  operator--(int);  // Define postfix decrement operator -> frac--
+
+        // Operator - 1 parameter
+        Fraction& operator+=(const Fraction& fraction);
+        Fraction& operator-=(const Fraction& fraction);
+        Fraction& operator*=(const Fraction& fraction);
+        Fraction& operator/=(const Fraction& fraction);
+
+        // Compare Operators
+        bool operator==(const Fraction& fraction);
+        bool operator!=(const Fraction& fraction);
+        bool operator<(const Fraction& fraction);
+        bool operator<=(const Fraction& fraction);
+        bool operator>(const Fraction& fraction);
+        bool operator>=(const Fraction& fraction);
+
+        // Assignment Operator
+        Fraction& operator=(const Fraction& fraction);
+        Fraction& operator=(const int& number);
 
         // Streaming Operator output stream <<, inputstream >>
-        friend ostream& operator<<(ostream &os, Fraction &fraction);
-        friend istream& operator>>(istream &is, Fraction &fraction);
+        friend ostream& operator<<(ostream& os, Fraction& fraction);
+        friend istream& operator>>(istream& is, Fraction& fraction);
 };
