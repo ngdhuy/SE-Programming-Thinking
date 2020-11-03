@@ -48,7 +48,8 @@ class Fraction
         Fraction* operator-(Fraction &fraction);
         Fraction* operator*(Fraction &fraction);
         Fraction* operator/(Fraction &fraction);
-        
+
+        void optimize();
 
         // Streaming Operator output stream <<, inputstream >>
         friend ostream& operator<<(ostream &os, Fraction &fraction);

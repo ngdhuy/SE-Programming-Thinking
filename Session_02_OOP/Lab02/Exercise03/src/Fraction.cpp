@@ -160,6 +160,28 @@ Fraction* Fraction::operator/(const Fraction &fraction)
     return result;
 }
 
+void Fraction::optimize()
+{
+    int middleValue;
+
+    // find middleValue of Numerator and Denominator
+    int a = this->numerator; 
+    int b = this->denominator;
+    
+    while(a != 0 && b != 0)
+    {
+        if(a > b)
+            a = a - b;
+        else
+            b = b - a;
+    }
+
+    middleValue = a + b;
+
+    this->numerator /= middleValue;
+    this->denominator /= middleValue;
+}
+
 ostream& operator<<(ostream &os, Fraction &fraction)
 {
     os << fraction.ToString();
