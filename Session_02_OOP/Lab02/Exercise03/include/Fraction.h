@@ -38,15 +38,7 @@ class Fraction
 
         // Business
         string ToString();
-        void optimize();
-        
-        // Operator - 2 parameter
-        Fraction* operator+(Fraction &fraction);
-        Fraction* operator-(Fraction &fraction);
-        Fraction* operator*(Fraction &fraction);
-        Fraction* operator/(Fraction &fraction);
-
-        
+        void Optimize();
         Fraction& Add(const Fraction& fraction);
         Fraction& Sub(const Fraction& fraction);
         Fraction& Mul(const Fraction& fraction);

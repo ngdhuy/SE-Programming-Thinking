@@ -70,25 +70,24 @@ string Fraction::ToString()
     return result;
 }
 
-void Fraction::optimize()
+void Fraction::Optimize()
 {
-    int middleValue;
-
-    // find middleValue of Numerator and Denominator
-    int a = this->numerator; 
-    int b = this->denominator;
-    while(a != 0 && b != 0)
+    int commonDivisor;
+    
+    // find Common Divisor bettween numerator and denominator
+    int tempNumerator = this->numerator;
+    int tempDenominator = this->denominator;
+    while(tempNumerator != 0 && tempDenominator != 0)
     {
-        if(a > b)
-            a = a - b;
+        if(tempNumerator > tempDenominator)
+            tempNumerator -= tempDenominator;
         else
-            b = b - a;
+            tempDenominator -= tempNumerator;
     }
+    commonDivisor = tempNumerator + tempDenominator;
 
-    middleValue = a + b;
-
-    this->numerator /= middleValue;
-    this->denominator /= middleValue;
+    this->numerator /= commonDivisor;
+    this->denominator /= commonDivisor;
 }
 
 Fraction& Fraction::Add(const Fraction& fraction)
@@ -97,6 +96,8 @@ Fraction& Fraction::Add(const Fraction& fraction)
     
     result->numerator = (this->numerator * fraction.denominator) + (this->denominator * fraction.numerator);
     result->denominator =  this->denominator * fraction.denominator;
+
+    result->Optimize();
 
     return *result;
 }
@@ -108,6 +109,8 @@ Fraction& Fraction::Sub(const Fraction& fraction)
     result->numerator = (this->numerator * fraction.denominator) - (this->denominator * fraction.numerator);
     result->denominator =  this->denominator * fraction.denominator;
 
+    result->Optimize();
+
     return *result;
 }
 
@@ -117,6 +120,8 @@ Fraction& Fraction::Mul(const Fraction& fraction)
     
     result->numerator = this->numerator * fraction.numerator;
     result->denominator =  this->denominator * fraction.denominator;
+
+    result->Optimize();
 
     return *result;
 }
@@ -133,6 +138,8 @@ Fraction& Fraction::Div(const Fraction& fraction)
     result->numerator = this->numerator * fraction.denominator;
     result->denominator =  this->denominator * fraction.numerator;
 
+    result->Optimize();
+
     return *result;
 }
 
@@ -144,6 +151,8 @@ Fraction& Fraction::operator+(const Fraction& fraction)
     result->numerator = (this->numerator * fraction.denominator) + (this->denominator * fraction.numerator);
     result->denominator =  this->denominator * fraction.denominator;
 
+    result->Optimize();
+
     return *result;
 }
 
@@ -154,6 +163,8 @@ Fraction& Fraction::operator-(const Fraction& fraction)
     result->numerator = (this->numerator * fraction.denominator) - (this->denominator * fraction.numerator);
     result->denominator =  this->denominator * fraction.denominator;
 
+    result->Optimize();
+
     return *result;
 }
 
@@ -163,6 +174,8 @@ Fraction& Fraction::operator*(const Fraction& fraction)
     
     result->numerator = this->numerator * fraction.numerator;
     result->denominator =  this->denominator * fraction.denominator;
+
+    result->Optimize();
 
     return *result;
 }
@@ -176,9 +189,10 @@ Fraction& Fraction::operator/(const Fraction& fraction)
         return *result;
     }
     
-    
     result->numerator = this->numerator * fraction.denominator;
     result->denominator =  this->denominator * fraction.numerator;
+
+    result->Optimize();
 
     return *result;
 }
@@ -188,6 +202,9 @@ Fraction& Fraction::operator/(const Fraction& fraction)
 Fraction& Fraction::operator++()
 {
     this->numerator += this->denominator;
+    
+    this->Optimize();
+    
     return *this;
 }
 
@@ -196,6 +213,9 @@ Fraction Fraction::operator++(int)
 {
     Fraction result = *this;
     ++(*this);
+    
+    result.Optimize();
+    
     return result;
 }
 
@@ -203,6 +223,9 @@ Fraction Fraction::operator++(int)
 Fraction& Fraction::operator--()
 {
     this->numerator -= this->denominator;
+    
+    this->Optimize();
+    
     return *this;
 }
 
@@ -211,6 +234,9 @@ Fraction Fraction::operator--(int)
 {
     Fraction result = *this;
     --(*this);
+    
+    result.Optimize();
+    
     return result;
 }
 
@@ -218,18 +244,27 @@ Fraction Fraction::operator--(int)
 Fraction& Fraction::operator+=(const Fraction& fraction)
 {
     *this = *this + fraction;
+    
+    this->Optimize();
+    
     return *this;
 }
 
 Fraction& Fraction::operator-=(const Fraction& fraction)
 {
     *this = *this - fraction;
+    
+    this->Optimize();
+    
     return *this;
 }
 
 Fraction& Fraction::operator*=(const Fraction& fraction)
 {
     *this = *this * fraction;
+    
+    this->Optimize();
+    
     return *this;
 }
 
@@ -238,6 +273,8 @@ Fraction& Fraction::operator/=(const Fraction& fraction)
     if(fraction.numerator != 0)
         *this = *this / fraction;
     
+    this->Optimize();
+
     return *this;
 }
 
