@@ -49,13 +49,18 @@ int Point::getY()
     return this->y;
 }
 
+double Point::Distance(const Point point)
+{
+    return sqrt(((this->x - point.x) * (this->x - point.x)) + ((this->y - point.y) * (this->y - point.y)));
+}
+
 ostream& operator<<(ostream& os, Point point)
 {
     os << "(" << point.x << ", " << point.y << ")";
     return os;
 }
 
-istream& operator>>(istream& is, Point point)
+istream& operator>>(istream& is, Point& point)
 {
     cout << "Enter x = "; 
     is >> point.x; 

@@ -1,10 +1,11 @@
 /**
  *  Created by NDHuy on 10/11/2020
  *  Copyright 2020 by SEstudio 
- *  Define Class for Point 2D 
+ *  Define Class for Line 2D
  */
 
 #include <iostream>
+#include <math.h>
 #include "Point.h"
 
 #pragma once
@@ -19,16 +20,16 @@ class Line
 
     public:
         Line(); 
-        Line(const Point begin, const Point end); 
+        Line(Point* begin, Point* end); 
         Line(const Line& line);
         
         ~Line(); 
 
-        void setBegin(const Point& point);
-        void setEnd(const Point& point); 
+        void setBegin(Point* point);
+        void setEnd(Point* point); 
 
-        Point getBegin();
-        Point getEnd();
+        Point* getBegin();
+        Point* getEnd();
 
         double Length();
 };

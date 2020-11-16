@@ -5,6 +5,7 @@
  */
 
 #include <iostream>
+#include <math.h>
 
 #pragma once
 
@@ -29,6 +30,8 @@ class Point
         int getX();
         int getY();
 
+        double Distance(const Point point);
+
         friend ostream& operator<< (ostream& os, Point point);
-        friend istream& operator>> (istream& is, Point point);
+        friend istream& operator>> (istream& is, Point& point);
 };
