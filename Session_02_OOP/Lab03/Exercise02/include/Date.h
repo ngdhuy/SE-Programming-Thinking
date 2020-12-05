@@ -5,7 +5,9 @@
  **/ 
 
 #include <iostream>
+#include <string>
 
+#pragma once
 using namespace std; 
 
 class Date
@@ -35,6 +37,7 @@ class Date
         void setYear(int value);
         void setTimeStamp(int day, int month, int year);
         void setTimeStamp(long value);
+        void setDate(int day, int month, int year);
 
         bool isLeapYear(int year);
         int getNumDayOfYear(int day, int month, int year);
@@ -53,6 +56,8 @@ class Date
         bool operator<=(const Date& date);
         bool operator>(const Date& date);
         bool operator>=(const Date& date);
+
+        string toString();
 
         friend ostream& operator<<(ostream& os, Date& date);
         friend istream& operator>>(istream& is, Date& date);

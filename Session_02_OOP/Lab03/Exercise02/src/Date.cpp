@@ -109,7 +109,7 @@ void Date::setYear(int value)
         this->year = value;
 }
 
-void Date::setTImeStamp(int day, int month, int year)
+void Date::setTimeStamp(int day, int month, int year)
 {
     this->day = day;
     this->month = month; 
@@ -129,51 +129,36 @@ void Date::setTImeStamp(int day, int month, int year)
 
 void Date::setTimeStamp(long value)
 {
-    if(0 < value)
-        this->timeStamp = value;
+    if(0 > value)
+        return;
 
-    this->year = value / 365;
+    this->timeStamp = value;
+    this->year = (value / 365) - 1;
+    int leafYear = 0; 
+    for(int i = this->year; i > 0; i--)
+        if(isLeapYear(i))
+            leafYear++;
+    cout << leafYear << endl;        
+    value = value % 365;
+    cout << value << endl;
+}
 
-    value = (value % 365) - (this->year / 4);
+void Date::setDate(int day, int month, int year)
+{
+    this->day = day;
+    this->month = month; 
+    this->year = year; 
 
-    this->month = value / 30;
-    value = value % 30;
-
-    if(isLeapYear(this->year))
+    this->timeStamp = 0; 
+    for(int i = 1; i < this->year; i++)
     {
-        if(this->month > 2)
-            value += 1;
-    }
-    else
-    {
-        if(this->month > 2)
-            value += 2;
-    }
-    
-
-    switch (this->month)
-    {
-        case 3:
-            value -= 1;
-            break;
-        case 5:
-            value -= 2;
-            break;
-        case 7:
-            value -= 3;
-            break;
-        case 8:
-            value -= 4;
-            break;
-        case 10:
-            value -= 5;
-            break;
-        case 12:
-            value -= 6;
-            break;
+        if(isLeapYear(i) == true)
+            this->timeStamp += 366;
+        else
+            this->timeStamp += 365;
     }
 
-    this->day = value;
+    this->timeStamp += getNumDayOfYear(day, month, year);
 }
 
 bool Date::isLeapYear(int year)
@@ -181,15 +166,118 @@ bool Date::isLeapYear(int year)
     return ((year % 4 == 0) && (year % 100 != 0)) || (year % 400 == 0);
 }
 
-int Date::getNumberOfYear(int day, int month, int year)
+int Date::getNumDayOfYear(int day, int month, int year)
 {
     int numDayOfMonth[] = {0, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
-    int value = 0; 
-    for(int i = 1; i <= month; i++)
+    int value = day; 
+    for(int i = 1; i < month; i++)
         value += numDayOfMonth[i];
 
     if(month > 2 && this->isLeapYear(year))
         value += 1;
         
     return value;
+}
+
+// ++date
+Date& Date::operator++()
+{
+    this->timeStamp++;
+    this->setTimeStamp(this->timeStamp);
+    return *this;
+}
+
+// date++
+Date Date::operator++(int)
+{
+    Date result = *this;
+    ++(*this);
+    return result;
+}
+
+// --date
+Date& Date::operator--()
+{
+    this->timeStamp--;
+    this->setTimeStamp(this->timeStamp);
+    return *this;
+}
+
+//  date--
+Date Date::operator--(int)
+{
+    Date result = *this;
+    --(*this);
+    return result;
+}
+
+Date& Date::operator+(const Date& date)
+{
+    Date* result;
+    result->setTimeStamp(this->timeStamp + date.timeStamp);
+    return *result;
+}
+
+Date& Date::operator-(const Date& date)
+{
+    Date* result; 
+    result->setTimeStamp(this->timeStamp - date.timeStamp);
+    return *result;
+}
+
+bool Date::operator==(const Date& date)
+{
+    return this->timeStamp == date.timeStamp;
+}
+
+bool Date::operator!=(const Date& date)
+{
+    return this->timeStamp != date.timeStamp;
+}
+
+bool Date::operator<(const Date& date)
+{
+    return this->timeStamp < date.timeStamp;
+}
+
+bool Date::operator<=(const Date& date)
+{
+    return this->timeStamp <= date.timeStamp;
+}
+
+bool Date::operator>(const Date& date)
+{
+    return this->timeStamp >= date.timeStamp;
+}
+
+bool Date::operator>=(const Date& date)
+{
+    return this->timeStamp > date.timeStamp;
+}
+
+string Date::toString()
+{
+    return to_string(this->day) + "/" + to_string(this->month) + "/" + to_string(this->year);
+}
+
+ostream& operator<<(ostream& os, Date& date)
+{
+    os << date.day << "/" << date.month << "/" << date.year;
+    return os;
+}
+
+istream& operator>>(istream& is, Date& date)
+{
+    int day; 
+    int month; 
+    int year; 
+    cout << "Enter day = ";
+    is >> day; 
+    cout << "Enter month = ";
+    is >> month; 
+    cout << "Enter year = ";
+    is >> year;
+
+    date.setDate(day, month, year);
+    return is;
 }
