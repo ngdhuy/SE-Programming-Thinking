@@ -1,25 +1,23 @@
 /**
- * Created by NDHuy on 30/12/2020
+ * Created by NDHuy on 03/12/2020
  * Copyright 2020 by SEstudio
- * Single Linked List
+ * Date-time class
  **/ 
 
 #include <iostream>
-#include "SingleLinkedList.h"
-#include "Node.h"
+#include "Date.h"
 
 using namespace std;
 
 int main()
 {
-    SingleLinkedList* list = new SingleLinkedList();
-    
-    list->AddTail(5);
-    list->AddTail(8);
-    list->AddTail(9);
-    list->AddTail(10);
-
-    list->Print();
-
+    Date a(31, 12, 1);
+    cout << a << "-" << a.getTimeStamp() << endl;
+    Date b(1, 1, 2);
+    cout << b << "-" << b.getTimeStamp() << endl;
+    Date c(5, 12, 2020);
+    cout << c << "-" << c.getTimeStamp() << endl;
+    c++;
+    cout << c << "-" << c.getTimeStamp() << endl;
     return 0;
 }
