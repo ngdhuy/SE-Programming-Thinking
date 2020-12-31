@@ -4,6 +4,9 @@
  * Single Linked List
  **/ 
 
+#ifndef __NODE_H__
+#define __NODE_H__
+
 #include <iostream>
 
 #pragma once
@@ -29,6 +32,20 @@ class Node
         void setData(T data);
         void setNext(Node<T>* node);
 
-        friend ostream& operator<<(ostream& os, Node<T>& node);
-        friend istream& operator>>(istream& is, Node<T>& node);
+        friend ostream& operator<<(ostream& os, Node<T>& node)
+        {
+            os << node.getData();
+            return os;
+        }
+
+        friend istream& operator>>(istream& is, Node<T>& node)
+        {
+            T temp = 0; 
+            cout << "Enter node's data = ";
+            cin >> temp; 
+            node.setData(temp);
+            return is;
+        }
 };
+
+#endif

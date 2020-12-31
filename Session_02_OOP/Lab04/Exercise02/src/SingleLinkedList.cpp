@@ -7,21 +7,18 @@
 #include "SingleLinkedList.h"
 
 template <class L>
-inline
 SingleLinkedList<L>::SingleLinkedList()
 {
     this->pHead = NULL;
 }
 
 template <class L>
-inline
 SingleLinkedList<L>::SingleLinkedList(Node<L>* node)
 {
     this->pHead = node;
 }
 
 template <class L>
-inline
 SingleLinkedList<L>::SingleLinkedList(L data)
 {
     Node<L>* node = new Node<L>(data);
@@ -29,14 +26,12 @@ SingleLinkedList<L>::SingleLinkedList(L data)
 }
 
 template <class L>
-inline
 SingleLinkedList<L>::SingleLinkedList(const SingleLinkedList<L>& singleLinkedList)
 {
     this->pHead = singleLinkedList.pHead;
 }
 
 template <class L>
-inline
 SingleLinkedList<L>::~SingleLinkedList()
 {
     Node<L>* p = this->pHead;
@@ -54,21 +49,18 @@ SingleLinkedList<L>::~SingleLinkedList()
 }
 
 template <class L>
-inline
 Node<L>* SingleLinkedList<L>::getHead()
 {
     return this->pHead;
 }
 
 template <class L>
-inline
 void SingleLinkedList<L>::setHead(Node<L>* pHead)
 {
     this->pHead = pHead;
 }
 
 template <class L>
-inline
 void SingleLinkedList<L>::AddHead(Node<L>* node)
 {
     if(this->pHead == NULL)
@@ -83,7 +75,6 @@ void SingleLinkedList<L>::AddHead(Node<L>* node)
 }
 
 template <class L>
-inline
 void SingleLinkedList<L>::AddHead(L data)
 {
     Node<L>* node = new Node<L>(data);
@@ -91,7 +82,6 @@ void SingleLinkedList<L>::AddHead(L data)
 }
 
 template <class L>
-inline
 void SingleLinkedList<L>::AddTail(Node<L>* node)
 {
     if(this->pHead == NULL)
@@ -120,7 +110,6 @@ void SingleLinkedList<L>::AddTail(L data)
 }
 
 template <class L>
-inline
 void SingleLinkedList<L>::Print()
 {
     Node<L>* p = this->pHead;
@@ -133,7 +122,6 @@ void SingleLinkedList<L>::Print()
 }
 
 template <class L>
-inline
 void SingleLinkedList<L>::AddIncrease(Node<L>* node)
 {
     if(this->pHead == NULL)
@@ -168,7 +156,6 @@ void SingleLinkedList<L>::AddIncrease(Node<L>* node)
 }
 
 template <class L>
-inline
 void SingleLinkedList<L>::AddIncrease(L data)
 {
     Node<L>* node = new Node<L>(data);
@@ -176,7 +163,6 @@ void SingleLinkedList<L>::AddIncrease(L data)
 }
 
 template <class L>
-inline
 void SingleLinkedList<L>::AddDecrease(Node<L>* node)
 {
     if(this->pHead == NULL)
@@ -211,7 +197,6 @@ void SingleLinkedList<L>::AddDecrease(Node<L>* node)
 }
 
 template <class L>
-inline
 void SingleLinkedList<L>::AddDecrease(L data)
 {
     Node<L>* node = new Node<L>(data);
@@ -219,7 +204,6 @@ void SingleLinkedList<L>::AddDecrease(L data)
 }
 
 template <class L>
-inline
 void SingleLinkedList<L>::Swap(Node<L>* nodeA, Node<L>* nodeB)
 {
     L temp = nodeA->getData(); 
@@ -228,7 +212,6 @@ void SingleLinkedList<L>::Swap(Node<L>* nodeA, Node<L>* nodeB)
 }
 
 template <class L>
-inline
 Node<L>* SingleLinkedList<L>::Find(L data)
 {
     for(Node<L>* p = this->pHead; p != NULL; p = p->getNext())
@@ -240,7 +223,6 @@ Node<L>* SingleLinkedList<L>::Find(L data)
 }
 
 template <class L>
-inline
 void SingleLinkedList<L>::Delete(L data)
 {
     Node<L>* node = this->Find(data);
@@ -276,3 +258,9 @@ void SingleLinkedList<L>::Delete(L data)
         }
     }
 }
+
+//--- define data types which is used for template ---
+template class SingleLinkedList<int>;
+template class SingleLinkedList<long>;
+template class SingleLinkedList<float>;
+template class SingleLinkedList<double>;

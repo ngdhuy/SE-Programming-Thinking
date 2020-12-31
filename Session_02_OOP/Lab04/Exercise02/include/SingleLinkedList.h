@@ -4,6 +4,9 @@
  * Single Linked List
  **/ 
 
+#ifndef __SINGLELINKEDLIST_H__
+#define __SINGLELINKEDLIST_H__
+
 #include <iostream>
 #include "Node.h"
 
@@ -46,3 +49,5 @@ class SingleLinkedList
         void Swap(Node<L>* nodeA, Node<L>* nodeB);
         void Print();
 };
+
+#endif
