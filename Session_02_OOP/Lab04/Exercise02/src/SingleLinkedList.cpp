@@ -1,39 +1,49 @@
 /**
- * Created by NDHuy on 30/12/2020
+ * Created by NDHuy on 31/12/2020
  * Copyright 2020 by SEstudio
  * Single Linked List
  **/ 
 
 #include "SingleLinkedList.h"
 
-SingleLinkedList::SingleLinkedList()
+template <class L>
+inline
+SingleLinkedList<L>::SingleLinkedList()
 {
     this->pHead = NULL;
 }
 
-SingleLinkedList::SingleLinkedList(Node* node)
+template <class L>
+inline
+SingleLinkedList<L>::SingleLinkedList(Node<L>* node)
 {
     this->pHead = node;
 }
 
-SingleLinkedList::SingleLinkedList(int data)
+template <class L>
+inline
+SingleLinkedList<L>::SingleLinkedList(L data)
 {
-    Node *node = new Node(data);
+    Node<L>* node = new Node<L>(data);
     this->pHead = node;
 }
 
-SingleLinkedList::SingleLinkedList(const SingleLinkedList& singleLinkedList)
+template <class L>
+inline
+SingleLinkedList<L>::SingleLinkedList(const SingleLinkedList<L>& singleLinkedList)
 {
     this->pHead = singleLinkedList.pHead;
 }
 
-SingleLinkedList::~SingleLinkedList()
+template <class L>
+inline
+SingleLinkedList<L>::~SingleLinkedList()
 {
-    Node* p = this->pHead;
+    Node<L>* p = this->pHead;
 
     while(p != NULL)
     {
-        Node* q = p;
+        Node<L>* q = p;
         p = p->getNext();
 
         delete q;
@@ -43,17 +53,23 @@ SingleLinkedList::~SingleLinkedList()
     this->pHead = NULL;
 }
 
-Node* SingleLinkedList::getHead()
+template <class L>
+inline
+Node<L>* SingleLinkedList<L>::getHead()
 {
     return this->pHead;
 }
 
-void SingleLinkedList::setHead(Node* pHead)
+template <class L>
+inline
+void SingleLinkedList<L>::setHead(Node<L>* pHead)
 {
     this->pHead = pHead;
 }
 
-void SingleLinkedList::AddHead(Node* node)
+template <class L>
+inline
+void SingleLinkedList<L>::AddHead(Node<L>* node)
 {
     if(this->pHead == NULL)
     {
@@ -66,13 +82,17 @@ void SingleLinkedList::AddHead(Node* node)
     }
 }
 
-void SingleLinkedList::AddHead(int data)
+template <class L>
+inline
+void SingleLinkedList<L>::AddHead(L data)
 {
-    Node* node = new Node(data);
+    Node<L>* node = new Node<L>(data);
     this->AddHead(node);
 }
 
-void SingleLinkedList::AddTail(Node* node)
+template <class L>
+inline
+void SingleLinkedList<L>::AddTail(Node<L>* node)
 {
     if(this->pHead == NULL)
     {
@@ -80,7 +100,7 @@ void SingleLinkedList::AddTail(Node* node)
     }
     else
     {
-        Node* p = this->pHead;
+        Node<L>* p = this->pHead;
         
         while(p->getNext() != NULL)
         {
@@ -91,15 +111,19 @@ void SingleLinkedList::AddTail(Node* node)
     }
 }
 
-void SingleLinkedList::AddTail(int data)
+template <class L>
+inline
+void SingleLinkedList<L>::AddTail(L data)
 {
-    Node* node = new Node(data);
+    Node<L>* node = new Node<L>(data);
     this->AddTail(node);
 }
 
-void SingleLinkedList::Print()
+template <class L>
+inline
+void SingleLinkedList<L>::Print()
 {
-    Node* p = this->pHead;
+    Node<L>* p = this->pHead;
     while(p)
     {
         cout << *p << "\t";
@@ -108,7 +132,9 @@ void SingleLinkedList::Print()
     cout << endl;
 }
 
-void SingleLinkedList::AddIncrease(Node* node)
+template <class L>
+inline
+void SingleLinkedList<L>::AddIncrease(Node<L>* node)
 {
     if(this->pHead == NULL)
     {
@@ -123,7 +149,7 @@ void SingleLinkedList::AddIncrease(Node* node)
         }
         else
         {
-            Node* p = this->pHead;
+            Node<L>* p = this->pHead;
             while(p)
             {
                 if(p->getData() < node->getData() && p->getNext() != NULL && p->getNext()->getData() > node->getData())
@@ -141,13 +167,17 @@ void SingleLinkedList::AddIncrease(Node* node)
     }
 }
 
-void SingleLinkedList::AddIncrease(int data)
+template <class L>
+inline
+void SingleLinkedList<L>::AddIncrease(L data)
 {
-    Node* node = new Node(data);
+    Node<L>* node = new Node<L>(data);
     this->AddIncrease(node);
 }
 
-void SingleLinkedList::AddDecrease(Node* node)
+template <class L>
+inline
+void SingleLinkedList<L>::AddDecrease(Node<L>* node)
 {
     if(this->pHead == NULL)
     {
@@ -162,7 +192,7 @@ void SingleLinkedList::AddDecrease(Node* node)
         }
         else
         {
-            Node* p = this->pHead;
+            Node<L>* p = this->pHead;
             while(p)
             {
                 if(p->getData() > node->getData() && p->getNext() != NULL && p->getNext()->getData() < node->getData())
@@ -180,22 +210,28 @@ void SingleLinkedList::AddDecrease(Node* node)
     }
 }
 
-void SingleLinkedList::AddDecrease(int data)
+template <class L>
+inline
+void SingleLinkedList<L>::AddDecrease(L data)
 {
-    Node* node = new Node(data);
+    Node<L>* node = new Node<L>(data);
     this->AddDecrease(node);
 }
 
-void SingleLinkedList::Swap(Node* nodeA, Node* nodeB)
+template <class L>
+inline
+void SingleLinkedList<L>::Swap(Node<L>* nodeA, Node<L>* nodeB)
 {
-    int temp = nodeA->getData(); 
+    L temp = nodeA->getData(); 
     nodeA->setData(nodeB->getData());
     nodeB->setData(temp);
 }
 
-Node* SingleLinkedList::Find(int data)
+template <class L>
+inline
+Node<L>* SingleLinkedList<L>::Find(L data)
 {
-    for(Node* p = this->pHead; p != NULL; p = p->getNext())
+    for(Node<L>* p = this->pHead; p != NULL; p = p->getNext())
     {
         if(p->getData() == data)
             return p;
@@ -203,14 +239,16 @@ Node* SingleLinkedList::Find(int data)
     return NULL;
 }
 
-void SingleLinkedList::Delete(int data)
+template <class L>
+inline
+void SingleLinkedList<L>::Delete(L data)
 {
-    Node* node = this->Find(data);
+    Node<L>* node = this->Find(data);
     if(node != NULL)
     {
         if(this->pHead->getData() == data)
         {
-            Node* p = this->pHead;
+            Node<L>* p = this->pHead;
             this->pHead = this->pHead->getNext();
 
             p->setNext(NULL);
@@ -219,7 +257,7 @@ void SingleLinkedList::Delete(int data)
         }
         else
         {
-            Node* p = this->pHead;
+            Node<L>* p = this->pHead;
             while(p)
             {
                 if(p->getNext() == node)

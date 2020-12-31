@@ -41,7 +41,7 @@ int main()
     list_3->AddIncrease(4);
     list_3->AddIncrease(25);
     
-    cout << "Add Increasement: ";
+    cout << "Add Increment: ";
     list_3->Print();
 
     SingleLinkedList* list_4 = new SingleLinkedList();
@@ -53,7 +53,7 @@ int main()
     list_4->AddDecrease(4);
     list_4->AddDecrease(25);
     
-    cout << "Add Decreasement: ";
+    cout << "Add Decrement: ";
     list_4->Print();
 
     cout << "Delete 5 in the Middle of linked list: ";
