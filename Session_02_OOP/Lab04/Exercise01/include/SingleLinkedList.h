@@ -32,5 +32,16 @@ class SingleLinkedList
         void AddTail(Node* node);
         void AddTail(int data);
 
+        void AddIncrease(Node* node);
+        void AddIncrease(int data);
+
+        void AddDecrease(Node* node);
+        void AddDecrease(int data);
+
+        Node* Find(int data);
+
+        void Delete(int data);
+
+        void Swap(Node* nodeA, Node* nodeB);
         void Print();
 };

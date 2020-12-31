@@ -107,3 +107,134 @@ void SingleLinkedList::Print()
     }
     cout << endl;
 }
+
+void SingleLinkedList::AddIncrease(Node* node)
+{
+    if(this->pHead == NULL)
+    {
+        this->pHead = node;
+    }
+    else
+    {
+        if(this->pHead->getData() > node->getData())
+        {
+            this->AddHead(node);
+            return;
+        }
+        else
+        {
+            Node* p = this->pHead;
+            while(p)
+            {
+                if(p->getData() < node->getData() && p->getNext() != NULL && p->getNext()->getData() > node->getData())
+                {
+                    node->setNext(p->getNext());
+                    p->setNext(node);
+                    return;   
+                }
+
+                p = p->getNext();
+            }
+
+            this->AddTail(node);
+        }        
+    }
+}
+
+void SingleLinkedList::AddIncrease(int data)
+{
+    Node* node = new Node(data);
+    this->AddIncrease(node);
+}
+
+void SingleLinkedList::AddDecrease(Node* node)
+{
+    if(this->pHead == NULL)
+    {
+        this->pHead = node;
+    }
+    else
+    {
+        if(this->pHead->getData() < node->getData())
+        {
+            this->AddHead(node);
+            return;
+        }
+        else
+        {
+            Node* p = this->pHead;
+            while(p)
+            {
+                if(p->getData() > node->getData() && p->getNext() != NULL && p->getNext()->getData() < node->getData())
+                {
+                    node->setNext(p->getNext());
+                    p->setNext(node);
+                    return;   
+                }
+
+                p = p->getNext();
+            }
+
+            this->AddTail(node);
+        }        
+    }
+}
+
+void SingleLinkedList::AddDecrease(int data)
+{
+    Node* node = new Node(data);
+    this->AddDecrease(node);
+}
+
+void SingleLinkedList::Swap(Node* nodeA, Node* nodeB)
+{
+    int temp = nodeA->getData(); 
+    nodeA->setData(nodeB->getData());
+    nodeB->setData(temp);
+}
+
+Node* SingleLinkedList::Find(int data)
+{
+    for(Node* p = this->pHead; p != NULL; p = p->getNext())
+    {
+        if(p->getData() == data)
+            return p;
+    }
+    return NULL;
+}
+
+void SingleLinkedList::Delete(int data)
+{
+    Node* node = this->Find(data);
+    if(node != NULL)
+    {
+        if(this->pHead->getData() == data)
+        {
+            Node* p = this->pHead;
+            this->pHead = this->pHead->getNext();
+
+            p->setNext(NULL);
+            delete p; 
+            p = NULL;
+        }
+        else
+        {
+            Node* p = this->pHead;
+            while(p)
+            {
+                if(p->getNext() == node)
+                {
+                    p->setNext(node->getNext());
+                    
+                    node->setNext(NULL);
+                    delete node;
+                    node = NULL;
+
+                    return;
+                }
+
+                p = p->getNext();
+            }
+        }
+    }
+}
