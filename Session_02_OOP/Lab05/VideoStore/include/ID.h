@@ -32,6 +32,7 @@ class ID
         string getYYYY();
 
         string toString();
+        void Input();
 
         bool operator==(const ID& id);
         bool operator==(const string& id);

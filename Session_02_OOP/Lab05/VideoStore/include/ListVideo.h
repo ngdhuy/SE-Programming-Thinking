@@ -40,6 +40,7 @@ class ListVideo
 
         void AddHead(Video* video);
         NodeVideo* Find(Video* video);
+        NodeVideo* Find(ID* id);
         void Remove(Video* video);
 
         void LoadFromFile(string fileName);
@@ -47,6 +48,12 @@ class ListVideo
         void Print();
 
         void Action();
+
+        void CreateDVD();
+        void CreateMovieRecord();
+        void CreateGame();
+
+        void DeleteItem();
 };
 
 #endif // __LISTVIDEO_H__

@@ -96,6 +96,24 @@ string ID::toString()
     return temp;
 }
 
+void ID::Input()
+{
+    string temp;
+    cout << "Enter xxx code: "; 
+    cin >> temp;
+    if(temp.length() <= 0 || temp.length() > 3)
+        cout << "Code " << temp << " is invalid" << endl;
+    else
+        this->xxx = temp;
+    
+    cout << "Enter yyyy year: ";
+    cin >> temp;
+    if(temp.length() <= 0 || temp.length() > 4)
+        cout << "Year " << temp << " is invalid" << endl;
+    else
+        this->yyyy = temp;
+}
+
 bool ID::operator==(const ID& id)
 {
     return ((this->xxx == id.xxx) && (this->yyyy == id.yyyy));

@@ -128,3 +128,22 @@ void Video::setIsAvailable(bool isAvailable)
 {
     this->isAvailable = isAvailable;
 }
+
+void Video::Input()
+{
+    this->id->Input();
+    
+    cout << "Enter title: "; 
+    cin >> this->title;
+
+    cout << "Enter loan type: ";
+    cin >> this->loanType;
+
+    cout << "Enter instock: ";
+    cin >> this->inStock;
+
+    cout << "Enter fee: ";
+    cin >> this->fee;
+
+    this->isAvailable = (this->inStock == 0) ? false : true;
+}

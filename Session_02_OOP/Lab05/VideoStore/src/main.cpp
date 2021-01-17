@@ -94,7 +94,7 @@ string upperCase(string s)
 int PrintMenu()
 {
     string numChoose;
-    cout << "Welcome to Genie’s video store.\n Enter an option below." << endl;
+    cout << endl << "Welcome to Genie’s video store.\nEnter an option below." << endl;
     cout << "\t 1. Add a new item, update or delete an existing item" << endl;
     cout << "\t 2. Add new customer or update an existing customer" << endl;
     cout << "\t 3. Promote an existing customer" << endl;

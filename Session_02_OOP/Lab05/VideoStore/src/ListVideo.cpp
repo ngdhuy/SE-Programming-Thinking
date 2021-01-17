@@ -73,6 +73,17 @@ NodeVideo* ListVideo::Find(Video* video)
     return NULL;
 }
 
+NodeVideo* ListVideo::Find(ID* id)
+{
+    NodeVideo* p = this->head;
+    while(p)
+    {
+        if(p->getVideo()->getID() == *id)
+            return p;
+    }
+    return NULL;
+}
+
 void ListVideo::Remove(Video* video)
 {
     NodeVideo* q = this->Find(video);
@@ -164,5 +175,88 @@ void ListVideo::Print()
 
 void ListVideo::Action()
 {
-    
+    int numChoose; 
+    cout << "--- ITEM action ---" << endl;
+    cout << "\t 1. Create new DVD Item" << endl;
+    cout << "\t 2. Create new Movie Record" << endl;
+    cout << "\t 3. Create new Game" << endl;
+    cout << "\t 4. Update item" << endl;
+    cout << "\t 5. Delete item" << endl;
+    cout << "=> Choose: ";
+    cin >> numChoose;
+
+    switch (numChoose)
+    {
+    case 1:
+        this->CreateDVD();
+        cout << endl << "Create new DVD Item is success" << endl;
+        break;
+    case 2:
+        this->CreateMovieRecord();
+        cout << endl << "Create new Movie Record Item is success" << endl;
+        break;
+    case 3:
+        this->CreateGame();
+        cout << endl << "Create new Game Item is success" << endl;
+        break;
+    case 4: 
+        break;
+    case 5:
+        this->DeleteItem();
+        cout << "Delete item is success" << endl;
+        break;
+    default:
+        break;
+    }
+}
+
+void ListVideo::DeleteItem()
+{
+    string sID;
+    cout << "Enter ID: "; 
+    cin >> sID;
+
+    ID* id = new ID(sID);
+
+    NodeVideo* removedVideo = this->Find(id);
+    this->Remove(removedVideo->getVideo());
+}
+
+void ListVideo::CreateDVD()
+{
+    DVD* video = new DVD(); 
+    video->Input();
+    video->setRental("DVD");
+
+    string genres; 
+    cout << "Enter genres: "; 
+    cin >> genres;
+
+    video->setGenres(genres);
+
+    this->AddHead(video);
+}
+
+void ListVideo::CreateMovieRecord()
+{
+    MovieRecord* video = new MovieRecord(); 
+    video->Input();
+    video->setRental("Record");
+
+    string genres; 
+    cout << "Enter genres: "; 
+    cin >> genres;
+
+    video->setGenres(genres);
+
+    this->AddHead(video);
+}
+
+void ListVideo::CreateGame()
+{
+    Game* video = new Game(); 
+    video->Input();
+    video->setRental("Game");
+
+    this->AddHead(video);
 }

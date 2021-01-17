@@ -48,6 +48,8 @@ class Video
         void setFee(float fee);
         void setIsAvailable(bool isAvailable);
 
+        void Input();
+
         virtual string toString() = 0;
 };
 
