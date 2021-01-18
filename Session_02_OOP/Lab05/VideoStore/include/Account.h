@@ -57,6 +57,8 @@ class Account
         bool removeVideo(string videoID);
         string toString();
         string getAccoutInfo();
+
+        void Input();
          
         virtual bool returnVideo(string videoID) = 0;
         virtual bool borrowVideo(string videoID) = 0;

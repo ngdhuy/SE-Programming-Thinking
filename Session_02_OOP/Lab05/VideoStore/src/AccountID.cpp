@@ -79,3 +79,15 @@ AccountID& AccountID::operator=(const AccountID& id)
     }
     return *this;
 }
+
+void AccountID::Input()
+{
+    string temp;
+    cout << "Enter xxx code: "; 
+    cin >> temp;
+    if(temp.length() <= 0 || temp.length() > 3)
+        cout << "Code " << temp << " is invalid" << endl;
+    else
+        this->xxx = temp;
+    cout << "Account ID is " << this->toString() << endl;
+}

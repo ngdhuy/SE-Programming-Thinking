@@ -37,6 +37,14 @@ int ListAccount::Find(Account* account)
     return -1;
 }
 
+int ListAccount::Find(AccountID* id)
+{
+    for(int i = 0; i < this->size; i++)
+        if(this->listAccount[i]->getID()->getXXX() == id->getXXX())
+            return i;
+    return -1;
+}
+
 void ListAccount::Remove(Account* account)
 {
     for(int i = 0; i < this->size; i++)
@@ -176,5 +184,261 @@ void ListAccount::PrintGroupOfAccount()
         this->PrintRegularAccount();
         this->PrintVIPAccount();
         break;
+    }
+}
+
+void ListAccount::Action()
+{
+    int numChoose; 
+    cout << "--- Account action ---" << endl;
+    cout << "\t 1. Create new Guest customer" << endl;
+    cout << "\t 2. Create new Regular customer" << endl;
+    cout << "\t 3. Create new VIP customer" << endl;
+    cout << "\t 4. Update Account" << endl;
+    cout << "=> Choose: ";
+    cin >> numChoose;
+
+    switch (numChoose)
+    {
+    case 1:
+        this->CreateGuest();
+        cout << endl << "Create new Guest customer is success" << endl;
+        break;
+    case 2:
+        this->CreateRegular();
+        cout << endl << "Create new Regular customer is success" << endl;
+        break;
+    case 3:
+        this->CreateVIP();
+        cout << endl << "Create new VIP customer is success" << endl;
+        break;
+    case 4: 
+        this->UpdateAccount();
+        break;
+    }
+}
+
+void ListAccount::CreateGuest()
+{
+    Guest* account = new Guest(); 
+    account->Input();
+    this->Add(account);
+}
+
+void ListAccount::CreateRegular()
+{
+    Regular* account = new Regular(); 
+    account->Input();
+    this->Add(account);
+}
+
+void ListAccount::CreateVIP()
+{
+    VIP* account = new VIP();
+    account->Input();
+    this->Add(account);
+}
+
+void ListAccount::UpdateAccount()
+{
+    string sID;
+    cout << "Enter ID of updated account: "; 
+    cin >> sID;
+
+    AccountID* id = new AccountID(sID);
+    int accountIndex = this->Find(id);
+    if(accountIndex == -1)
+    {
+        cout << "Cannot found Account with ID " << id->toString() << endl;
+        return;
+    }
+
+    cout << "Current Information of Account" << endl;
+    this->PrintOneAccount(this->listAccount[accountIndex]);
+
+    cout << "-- Enter new information for Account with ID " << id->toString() << " --" <<endl;
+    string temp;
+    cout << "Enter name: ";
+    cin >> ws; 
+    getline(cin, temp);
+    this->listAccount[accountIndex]->setName(temp);
+
+    cout << "Enter address: ";
+    cin >> ws;
+    getline(cin, temp);
+    this->listAccount[accountIndex]->setAddress(temp);
+
+    cout << "Enter phone number: "; 
+    cin >> ws; 
+    getline(cin, temp);
+    this->listAccount[accountIndex]->setPhone(temp);
+
+    cout << "After update information for ITEM with ID " << id->toString() << endl;
+    this->PrintOneAccount(this->listAccount[accountIndex]);
+}
+
+void ListAccount::PrintOneAccount(Account* account)
+{
+    cout << "\tAccount ID: " << account->getID()->toString() << endl;
+    cout << "\tName: " << account->getName() << endl;
+    cout << "\tAddress: " << account->getAddress() << endl;
+    cout << "\tPhone number: " << account->getPhone() << endl;
+    cout << "\tAccount type: " << account->getType() << endl;
+}
+
+void ListAccount::Borrow(ListVideo* listVideo)
+{
+    string sID;
+    cout << "Enter ID of account wanna rent: "; 
+    cin >> sID;
+
+    AccountID* accountID = new AccountID(sID);
+    int accountIndex = this->Find(accountID);
+    if(accountIndex == -1)
+    {
+        cout << "Cannot found Account with ID " << accountID->toString() << endl;
+        return;
+    }
+
+    cout << "Enter ID of video wanna rent: "; 
+    cin >> sID;
+
+    ID* videoID = new ID(sID);
+
+    NodeVideo* updatedVideo = listVideo->Find(videoID);
+    
+    if(updatedVideo == NULL)
+    {
+        cout << "Cannot found Item with ID " << videoID->toString() << endl;
+        return;
+    }    
+
+    if (updatedVideo->getVideo()->getInStock() <= 0)
+    {
+        cout << "Item ID " << videoID->toString() << " is out of stock for rent" << endl;
+        return;   
+    }
+
+    if(this->listAccount[accountIndex]->borrowVideo(videoID->toString()) == true)
+    {
+        int inStock = updatedVideo->getVideo()->getInStock();
+        updatedVideo->getVideo()->setInStock(inStock - 1);
+        cout << "Borrow success!" << endl;
+    }
+}
+
+void ListAccount::Return(ListVideo* listVideo)
+{
+    string sID;
+    cout << "Enter ID of account wanna return: "; 
+    cin >> sID;
+
+    AccountID* accountID = new AccountID(sID);
+    int accountIndex = this->Find(accountID);
+    if(accountIndex == -1)
+    {
+        cout << "Cannot found Account with ID " << accountID->toString() << endl;
+        return;
+    }
+
+    cout << "Enter ID of video wanna return: "; 
+    cin >> sID;
+
+    ID* videoID = new ID(sID);
+
+    NodeVideo* updatedVideo = listVideo->Find(videoID);
+    
+    if(updatedVideo == NULL)
+    {
+        cout << "Cannot found Item with ID " << videoID->toString() << endl;
+        return;
+    }    
+
+    if(this->listAccount[accountIndex]->returnVideo(videoID->toString()) == true)
+    {
+        int inStock = updatedVideo->getVideo()->getInStock();
+        updatedVideo->getVideo()->setInStock(inStock + 1);
+        cout << "Return success!" << endl;
+    }
+    else
+        cout << "Item ID " << videoID->toString() << " cannot be found in rent list of account " << accountID->toString() << endl;
+    
+}
+
+void ListAccount::Promote()
+{
+    string sID;
+    cout << "Enter ID of account wanna promote: "; 
+    cin >> sID;
+
+    AccountID* accountID = new AccountID(sID);
+    int accountIndex = this->Find(accountID);
+    if(accountIndex == -1)
+    {
+        cout << "Cannot found Account with ID " << accountID->toString() << endl;
+        return;
+    }
+
+    if(this->listAccount[accountIndex]->getType() == "VIP")
+    {
+        cout << "Current account is VIP. So, you cannot promote for this account" << endl;
+        return;
+    }
+    
+    if(this->listAccount[accountIndex]->getType() == "Guest")
+    {
+        if(((Guest*)this->listAccount[accountIndex])->isPromoteAccount() == true)
+        {
+            Regular* newAccount = new Regular();
+            newAccount->setID(this->listAccount[accountIndex]->getID());
+            newAccount->setName(this->listAccount[accountIndex]->getName());
+            newAccount->setAddress(this->listAccount[accountIndex]->getAddress());
+            newAccount->setPhone(this->listAccount[accountIndex]->getPhone());
+            
+            string listRentalID[MAX];
+            int nRentalID;
+
+            this->listAccount[accountIndex]->getListRental(listRentalID, nRentalID);
+            newAccount->setListRental(listRentalID, nRentalID);
+            
+            int newPromotePoint = ((Guest*)this->listAccount[accountIndex])->getNumberOfReturnSuccess() - NUM_RETURN_SUCCESS_TO_PROMOTE;
+            newAccount->setNumberOfReturnSuccess(newPromotePoint);
+
+            this->Remove(this->listAccount[accountIndex]);
+            this->Add(newAccount);
+        }
+        else
+        {
+            cout << "This account does not have enough Success Rent Time" << endl;
+            return;
+        }
+        
+    }
+
+    if(this->listAccount[accountIndex]->getType() == "Regular")
+    {
+        if(((Regular*)this->listAccount[accountIndex])->isPromoteAccount() == true)
+        {
+            VIP* newAccount = new VIP();
+            newAccount->setID(this->listAccount[accountIndex]->getID());
+            newAccount->setName(this->listAccount[accountIndex]->getName());
+            newAccount->setAddress(this->listAccount[accountIndex]->getAddress());
+            newAccount->setPhone(this->listAccount[accountIndex]->getPhone());
+            
+            string listRentalID[MAX];
+            int nRentalID;
+
+            this->listAccount[accountIndex]->getListRental(listRentalID, nRentalID);
+            newAccount->setListRental(listRentalID, nRentalID);
+            
+            this->Remove(this->listAccount[accountIndex]);
+            this->Add(newAccount);
+        }
+        else
+        {
+            cout << "This account does not have enough Success Rent Time" << endl;
+            return;
+        }
+        
     }
 }

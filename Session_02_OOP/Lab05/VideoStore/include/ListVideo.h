@@ -53,7 +53,14 @@ class ListVideo
         void CreateMovieRecord();
         void CreateGame();
 
+        void UpdateVideo();
+
+        void PrintOneNodeVideo(NodeVideo* nodeVideo);
+
         void DeleteItem();
+
+        void PrintAllItem();
+        void PrintItemOutOfStock();
 };
 
 #endif // __LISTVIDEO_H__

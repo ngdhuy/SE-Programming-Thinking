@@ -9,6 +9,12 @@
 #include <string>
 #include <fstream>
 
+#include "Video.h"
+#include "DVD.h"
+#include "Game.h"
+#include "MovieRecord.h"
+#include "ListVideo.h"
+
 #include "Account.h"
 #include "Guest.h"
 #include "Regular.h"
@@ -35,6 +41,7 @@ class ListAccount
 
         void Add(Account* account);
         int Find(Account* account);
+        int Find(AccountID* id);
         void Remove(Account* account);
 
         void LoadFromFile(string fileName);
@@ -45,6 +52,21 @@ class ListAccount
         void PrintVIPAccount();
 
         void PrintGroupOfAccount();
+
+        void Action();
+
+        void CreateGuest(); 
+        void CreateRegular();
+        void CreateVIP();
+
+        void UpdateAccount();
+
+        void PrintOneAccount(Account* account);
+        
+        void Borrow(ListVideo* listVideo);
+        void Return(ListVideo* listVideo);
+
+        void Promote();
 };
 
 #endif // __LISTACCOUNT_H__

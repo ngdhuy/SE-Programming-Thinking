@@ -117,6 +117,7 @@ void Video::setLoanType(string loan)
 void Video::setInStock(int instock)
 {
     this->inStock = instock;
+    this->isAvailable = (this->inStock <= 0) ? false : true;
 }
 
 void Video::setFee(float fee)
@@ -134,10 +135,12 @@ void Video::Input()
     this->id->Input();
     
     cout << "Enter title: "; 
-    cin >> this->title;
+    cin >> ws;
+    getline(cin, this->title);
 
     cout << "Enter loan type: ";
-    cin >> this->loanType;
+    cin >> ws;
+    getline(cin, this->loanType);
 
     cout << "Enter instock: ";
     cin >> this->inStock;

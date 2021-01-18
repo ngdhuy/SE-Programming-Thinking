@@ -30,9 +30,14 @@ int Regular::getNumberOfReturnSuccess()
     return this->numberOfReturnSuccess;
 }
 
+void Regular::setNumberOfReturnSuccess(int numberOfReturnSuccess)
+{
+    this->numberOfReturnSuccess = numberOfReturnSuccess;
+}
+
 bool Regular::isPromoteAccount()
 {
-    return this->numberOfReturnSuccess >= NUM_RETURN_SUCCESS_TO_PROMOTE;
+    return this->numberOfReturnSuccess >= NUM_RETURN_SUCCESS_TO_PROMOTE_VIP;
 }
 
 bool Regular::returnVideo(string videoID)

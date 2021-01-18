@@ -12,7 +12,7 @@
 
 #pragma once 
 
-#define NUM_RETURN_SUCCESS_TO_PROMOTE 3
+#define NUM_RETURN_SUCCESS_TO_PROMOTE_VIP 3
 
 using namespace std;
 
@@ -28,6 +28,8 @@ class Regular : public Account
         ~Regular();
 
         int getNumberOfReturnSuccess();
+        void setNumberOfReturnSuccess(int numberOfReturnSuccess);
+
         bool isPromoteAccount();
 
         bool returnVideo(string videoID);

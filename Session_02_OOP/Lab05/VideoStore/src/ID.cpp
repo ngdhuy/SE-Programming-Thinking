@@ -112,6 +112,8 @@ void ID::Input()
         cout << "Year " << temp << " is invalid" << endl;
     else
         this->yyyy = temp;
+
+    cout << "Video ID is " << this->toString() << endl;
 }
 
 bool ID::operator==(const ID& id)

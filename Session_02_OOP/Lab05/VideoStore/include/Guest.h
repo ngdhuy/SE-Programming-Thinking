@@ -29,6 +29,7 @@ class Guest : public Account
         ~Guest();
 
         int getNumberOfReturnSuccess();
+        void setNumberOfReturnSuccess(int numberOfReturnSuccess);
         bool isPromoteAccount();
 
         bool returnVideo(string videoID);

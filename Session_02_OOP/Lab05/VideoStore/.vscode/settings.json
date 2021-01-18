@@ -17,6 +17,7 @@
         "memory": "cpp",
         "ratio": "cpp",
         "tuple": "cpp",
-        "utility": "cpp"
+        "utility": "cpp",
+        "iostream": "cpp"
     }
 }

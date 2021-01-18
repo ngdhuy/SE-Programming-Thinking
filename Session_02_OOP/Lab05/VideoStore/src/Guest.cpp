@@ -30,6 +30,11 @@ int Guest::getNumberOfReturnSuccess()
     return this->numberOfReturnSuccess;
 }
 
+void Guest::setNumberOfReturnSuccess(int numberOfReturnSuccess)
+{
+    this->numberOfReturnSuccess = numberOfReturnSuccess;
+}
+
 bool Guest::isPromoteAccount()
 {
     return this->numberOfReturnSuccess >= NUM_RETURN_SUCCESS_TO_PROMOTE;
@@ -53,5 +58,8 @@ bool Guest::borrowVideo(string videoID)
         return this->addVideo(videoID);
     }
     else 
-        return true;
+    {
+        cout << "Guest account ID " << this->getID()->toString() << " restricted" << endl;
+        return false;
+    }
 }

@@ -24,7 +24,7 @@ Game::~Game()
 string Game::toString()
 {
     string temp;
-    temp = this->getID().toString() + "," + this->getTitle() + "," + this->getRental() + "," + this->getLoanType() + "," + to_string(this->getFee());
+    temp = this->getID().toString() + "," + this->getTitle() + "," + this->getRental() + "," + this->getLoanType() + "," + to_string(this->getInStock()) + "," + to_string(this->getFee());
     return temp;
 }
 

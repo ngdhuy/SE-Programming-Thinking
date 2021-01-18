@@ -33,6 +33,8 @@ class AccountID
         bool operator==(const AccountID& id);
         bool operator==(const string& id);
         AccountID& operator=(const AccountID& id);
+
+        void Input();
 };
 
 #endif // __ACCOUNTID_H__

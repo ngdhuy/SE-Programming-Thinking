@@ -187,3 +187,20 @@ string Account::getAccoutInfo()
     temp = this->id->toString() + "," + this->name + "," + this->address + "," + this->phone + "," + this->type;
     return temp;
 }
+
+void Account::Input()
+{
+    this->id->Input();
+
+    cout << "Enter name: ";
+    cin >> ws; 
+    getline(cin, this->name);
+
+    cout << "Enter address: ";
+    cin >> ws;
+    getline(cin, this->address);
+
+    cout << "Enter phone number: "; 
+    cin >> ws; 
+    getline(cin, this->phone);
+}

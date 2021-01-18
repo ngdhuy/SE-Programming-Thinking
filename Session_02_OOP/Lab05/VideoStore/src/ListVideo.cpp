@@ -69,6 +69,7 @@ NodeVideo* ListVideo::Find(Video* video)
     {
         if(p->getVideo()->getID() == video->getID())
             return p;
+        p = p->getNext();
     }
     return NULL;
 }
@@ -80,6 +81,7 @@ NodeVideo* ListVideo::Find(ID* id)
     {
         if(p->getVideo()->getID() == *id)
             return p;
+        p = p->getNext();
     }
     return NULL;
 }
@@ -200,12 +202,10 @@ void ListVideo::Action()
         cout << endl << "Create new Game Item is success" << endl;
         break;
     case 4: 
+        this->UpdateVideo();
         break;
     case 5:
         this->DeleteItem();
-        cout << "Delete item is success" << endl;
-        break;
-    default:
         break;
     }
 }
@@ -219,7 +219,16 @@ void ListVideo::DeleteItem()
     ID* id = new ID(sID);
 
     NodeVideo* removedVideo = this->Find(id);
-    this->Remove(removedVideo->getVideo());
+    if(removedVideo == NULL)
+    {
+        cout << "Cannot found Item with ID " << id->toString() << endl;
+        return;
+    }
+    else
+    {
+        this->Remove(removedVideo->getVideo());
+        cout << "Delete item is success" << endl;
+    }
 }
 
 void ListVideo::CreateDVD()
@@ -247,4 +256,84 @@ void ListVideo::CreateGame()
     video->setRental("Game");
 
     this->AddHead(video);
+}
+
+void ListVideo::UpdateVideo()
+{
+    string sID;
+    cout << "Enter ID of updated video: "; 
+    cin >> sID;
+
+    ID* id = new ID(sID);
+
+    NodeVideo* updatedVideo = this->Find(id);
+    
+    if(updatedVideo == NULL)
+    {
+        cout << "Cannot found Item with ID " << id->toString() << endl;
+        return;
+    }
+    cout << "Current Information of ITEM" << endl;
+    this->PrintOneNodeVideo(updatedVideo);
+
+    cout << "-- Enter new information for ITEM with ID " << updatedVideo->getVideo()->getID().toString() << " --" <<endl;
+
+    string temp;
+    cout << "Enter title: "; 
+    cin >> ws;
+    getline(cin, temp);
+    updatedVideo->getVideo()->setTitle(temp);
+
+    cout << "Enter loan type: ";
+    cin >> ws;
+    getline(cin, temp);
+    fflush(stdin);
+    updatedVideo->getVideo()->setLoanType(temp);
+
+    int inStock;
+    cout << "Enter in-stock: ";
+    cin >> inStock;
+    updatedVideo->getVideo()->setInStock(inStock);
+
+    float fee;
+    cout << "Enter fee: ";
+    cin >> fee;
+    updatedVideo->getVideo()->setFee(fee);
+
+    cout << "After update information for ITEM with ID " << updatedVideo->getVideo()->getID().toString() << endl;
+    this->PrintOneNodeVideo(updatedVideo);
+}
+
+void ListVideo::PrintOneNodeVideo(NodeVideo* nodeVideo)
+{
+    cout << "\tID: " << nodeVideo->getVideo()->getID().toString() << endl;
+    cout << "\tTitle: " << nodeVideo->getVideo()->getTitle() << endl;
+    cout << "\tRental Type: " << nodeVideo->getVideo()->getRental() << endl;
+    cout << "\tLoan Type: " << nodeVideo->getVideo()->getLoanType() << endl;
+    cout << "\tIn-Stock: " << nodeVideo->getVideo()->getInStock() << endl;
+    cout << "\tFee: " << nodeVideo->getVideo()->getFee() << endl;
+    string isAvailable = (nodeVideo->getVideo()->getIsAvailable() == 1) ? "true" : "false";
+    cout << "\tIs available: " << isAvailable << endl;
+    
+    if(nodeVideo->getVideo()->getRental() == "DVD")
+        cout << "\tGenres: " << ((DVD*)nodeVideo->getVideo())->getGenres();
+    else if (nodeVideo->getVideo()->getRental() == "Record")
+        cout << "\tGenres: " << ((MovieRecord*)nodeVideo->getVideo())->getGenres();
+}
+
+void ListVideo::PrintAllItem()
+{
+    for(NodeVideo* p = this->head; p != NULL; p = p->getNext())
+    {
+        cout << p->getVideo()->toString() << endl;
+    }
+}
+
+void ListVideo::PrintItemOutOfStock()
+{
+    for(NodeVideo* p = this->head; p != NULL; p = p->getNext())
+    {
+        if(p->getVideo()->getInStock() <= 0)
+            cout << p->getVideo()->toString() << endl;
+    }
 }

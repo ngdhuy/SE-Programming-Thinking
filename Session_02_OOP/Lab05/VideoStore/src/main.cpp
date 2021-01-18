@@ -47,22 +47,22 @@ int main()
             listItem->Action();
             break;
         case 2:
-            
+            listCustomer->Action();
             break;
         case 3:
-            
+            listCustomer->Promote();
             break;
         case 4:
-            
+            listCustomer->Borrow(listItem);
             break;
         case 5:
-            
+            listCustomer->Return(listItem);
             break;
         case 6:
-            
+            listItem->PrintAllItem();
             break;
         case 7:
-            
+            listItem->PrintItemOutOfStock();
             break;
         case 8:
             listCustomer->PrintAllAccountInfo();
@@ -143,4 +143,5 @@ void PrintStudentInfo()
     cout << "s3818480,s3818480@rmit.edu.vn,Vinh,Le" << endl;
     cout << "S3665025,S3665025@rmit.edu.vn,Duy,Tran" << endl;
     cout << "s3681475,s3681475@rmit.edu.vn,Kiet,Park" << endl;
+    cout << endl;
 }
