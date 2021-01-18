@@ -49,6 +49,7 @@ class Video
         void setIsAvailable(bool isAvailable);
 
         void Input();
+        string InputGenres();
 
         virtual string toString() = 0;
 };

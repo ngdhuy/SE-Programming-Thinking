@@ -29,6 +29,7 @@ class DVD : public Video
         string getGenres();
 
         string toString();
+        void Input();
 };
 
 #endif // __DVD_H__

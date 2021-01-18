@@ -27,3 +27,8 @@ string Game::toString()
     temp = this->getID().toString() + "," + this->getTitle() + "," + this->getRental() + "," + this->getLoanType() + "," + to_string(this->getFee());
     return temp;
 }
+
+void Game::Input()
+{
+    Video::Input();
+}

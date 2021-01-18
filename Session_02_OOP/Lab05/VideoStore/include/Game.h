@@ -23,6 +23,7 @@ class Game : public Video
         ~Game();
 
         string toString();
+        void Input();
 };
 
 #endif

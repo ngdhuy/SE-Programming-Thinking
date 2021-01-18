@@ -45,3 +45,9 @@ string DVD::toString()
     temp = this->getID().toString() + "," + this->getTitle() + "," + this->getRental() + "," + this->getLoanType() + "," + to_string(this->getFee()) + "," + this->getGenres();
     return temp;
 }
+
+void DVD::Input()
+{
+    Video::Input();
+    this->genres = InputGenres();
+}

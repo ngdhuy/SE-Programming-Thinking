@@ -147,3 +147,33 @@ void Video::Input()
 
     this->isAvailable = (this->inStock == 0) ? false : true;
 }
+
+string Video::InputGenres()
+{
+    int numChoose;
+    cout << "Enter an option for Grenres below:" << endl;
+    cout << "\t 1. Action" << endl;
+    cout << "\t 2. Horror" << endl;
+    cout << "\t 3. Drama" << endl;
+    cout << "\t 4. Comedy" << endl;
+    cout << "=> Choose: ";
+    cin >> numChoose;
+
+    string genres = "";
+    switch (numChoose)
+    {
+    case 1:
+        genres = "Action";
+        break;
+    case 2: 
+        genres = "Horror"; 
+        break; 
+    case 3:
+        genres = "Dramma"; 
+        break;
+    case 4: 
+        genres = "Comedy";
+        break;
+    }
+    return genres;
+}

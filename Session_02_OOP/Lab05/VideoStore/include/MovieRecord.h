@@ -29,6 +29,7 @@ class MovieRecord : public Video
         string getGenres();
 
         string toString();
+        void Input();
 };
 
 #endif

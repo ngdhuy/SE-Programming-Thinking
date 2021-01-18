@@ -228,12 +228,6 @@ void ListVideo::CreateDVD()
     video->Input();
     video->setRental("DVD");
 
-    string genres; 
-    cout << "Enter genres: "; 
-    cin >> genres;
-
-    video->setGenres(genres);
-
     this->AddHead(video);
 }
 
@@ -242,12 +236,6 @@ void ListVideo::CreateMovieRecord()
     MovieRecord* video = new MovieRecord(); 
     video->Input();
     video->setRental("Record");
-
-    string genres; 
-    cout << "Enter genres: "; 
-    cin >> genres;
-
-    video->setGenres(genres);
 
     this->AddHead(video);
 }
