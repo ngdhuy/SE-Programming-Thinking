@@ -67,6 +67,9 @@ class ListAccount
         void Return(ListVideo* listVideo);
 
         void Promote();
+
+        void SearchByID();
+        void SearchByName();
 };
 
 #endif // __LISTACCOUNT_H__

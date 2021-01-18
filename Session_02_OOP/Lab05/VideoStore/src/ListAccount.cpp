@@ -442,3 +442,69 @@ void ListAccount::Promote()
         
     }
 }
+
+void ListAccount::SearchByID()
+{
+    string sID;
+    cout << "Enter ID of account: "; 
+    cin >> sID;
+
+    AccountID* accountID = new AccountID(sID);
+    int accountIndex = this->Find(accountID);
+    if(accountIndex == -1)
+    {
+        cout << "Cannot found Account with ID " << accountID->toString() << endl;
+        return;
+    }
+    else
+    {
+        PrintOneAccount(this->listAccount[accountIndex]);
+        string listRentalID[MAX];
+        int nRentalID;
+        this->listAccount[accountIndex]->getListRental(listRentalID, nRentalID);
+        if(nRentalID > 0)
+        {
+            cout << "Account is borrowed " << nRentalID << " item with List of ID: ";
+            for(int i = 0; i < nRentalID; i++)
+            cout << "\t" << listRentalID[i];
+        }
+        cout << endl;
+    }
+}
+
+void ListAccount::SearchByName()
+{
+    string sName;
+    cout << "Enter name of account: "; 
+    cin >> ws;
+    getline(cin, sName);
+
+    int accountIndex = -1;
+    for(int i = 0; i < this->size; i++)
+    {
+        if(sName == this->listAccount[i]->getName())
+        {
+            accountIndex = i;
+            break;   
+        }
+    }
+    if(accountIndex == -1)
+    {
+        cout << "Cannot found Account with name " << sName << endl;
+        return;
+    }
+    else
+    {
+        PrintOneAccount(this->listAccount[accountIndex]);
+        string listRentalID[MAX];
+        int nRentalID;
+        this->listAccount[accountIndex]->getListRental(listRentalID, nRentalID);
+        if(nRentalID > 0)
+        {
+            cout << "Account is borrowed " << nRentalID << " item with List of ID: ";
+            for(int i = 0; i < nRentalID; i++)
+            cout << "\t" << listRentalID[i];
+        }
+        cout << endl;
+    }
+}

@@ -337,3 +337,52 @@ void ListVideo::PrintItemOutOfStock()
             cout << p->getVideo()->toString() << endl;
     }
 }
+
+void ListVideo::SearchByID()
+{
+    string sID;
+    cout << "Enter ID of item: "; 
+    cin >> sID;
+
+    ID* id = new ID(sID);
+
+    NodeVideo* nodeVideo = this->Find(id);
+    
+    if(nodeVideo == NULL)
+    {
+        cout << "Cannot found Item with ID " << id->toString() << endl;
+        return;
+    }
+    else
+    {
+        this->PrintOneNodeVideo(nodeVideo);
+        cout << endl;
+    }
+}
+
+void ListVideo::SearchByTitle()
+{
+    string sName;
+    cout << "Enter Title of item: "; 
+    cin >> ws;
+    getline(cin, sName);
+
+    NodeVideo* nodeVideo = NULL;
+
+    for(NodeVideo* p = this->head; p != NULL; p = p->getNext())
+    {
+        if(p->getVideo()->getTitle() == sName)
+            nodeVideo = p;
+    }
+    
+    if(nodeVideo == NULL)
+    {
+        cout << "Cannot found Item with Name " << sName << endl;
+        return;
+    }
+    else
+    {
+        this->PrintOneNodeVideo(nodeVideo);
+        cout << endl;
+    }
+}

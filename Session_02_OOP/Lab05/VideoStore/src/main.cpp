@@ -29,13 +29,17 @@ int PrintMenu();
 void PrintStudentInfo();
 
 // --- Main function ---
-int main()
+int main(int argc, char **argv)
 {
-    ListVideo* listItem = new ListVideo(); 
-    listItem->LoadFromFile("items.txt");
-
     ListAccount* listCustomer = new ListAccount();
-    listCustomer->LoadFromFile("customers.txt");
+    // listCustomer->LoadFromFile("customers.txt");
+    listCustomer->LoadFromFile(argv[1]);
+
+    ListVideo* listItem = new ListVideo(); 
+    // listItem->LoadFromFile("items.txt");
+    listItem->LoadFromFile(argv[2]);
+
+    
     
     int numChoose = 0; 
     do
@@ -71,7 +75,32 @@ int main()
             listCustomer->PrintGroupOfAccount();
             break;
         case 10:
-            
+            int subChoose; 
+            cout << "------ Search information ------" << endl;
+            cout << "\t 1. Search customer by ID" << endl; 
+            cout << "\t 2. Search customer by Name" << endl;
+            cout << "\t 3. Search item by ID" << endl; 
+            cout << "\t 4. Search item by title" << endl;
+            cout << "\t 0. Back" << endl;
+            cout << "=> Chooose: "; 
+            cin >> subChoose;
+            switch (subChoose)
+            {
+            case 0:
+                break;
+            case 1: 
+                listCustomer->SearchByID();
+                break;
+            case 2: 
+                listCustomer->SearchByName();
+                break;
+            case 3: 
+                listItem->SearchByID();
+                break;
+            case 4:
+                listItem->SearchByTitle();
+                break;
+            }
             break;
         default:
             break;

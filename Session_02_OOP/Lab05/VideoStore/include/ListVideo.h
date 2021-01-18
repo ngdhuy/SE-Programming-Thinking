@@ -61,6 +61,9 @@ class ListVideo
 
         void PrintAllItem();
         void PrintItemOutOfStock();
+
+        void SearchByID();
+        void SearchByTitle();
 };
 
 #endif // __LISTVIDEO_H__
