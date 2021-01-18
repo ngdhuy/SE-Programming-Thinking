@@ -45,6 +45,7 @@ class ListAccount
         void Remove(Account* account);
 
         void LoadFromFile(string fileName);
+        void SaveToFile(string fileName);
         
         void PrintAllAccountInfo();
         void PrintGuestAccount();

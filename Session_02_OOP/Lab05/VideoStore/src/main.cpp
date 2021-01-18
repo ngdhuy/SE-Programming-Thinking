@@ -108,6 +108,9 @@ int main(int argc, char **argv)
     } while (numChoose != 0);
 
     PrintStudentInfo();
+
+    listCustomer->SaveToFile(argv[1]);
+    listItem->SaveToFile(argv[2]);
     return 0;
 }
 

@@ -173,7 +173,7 @@ bool Account::removeVideo(string videoID)
 string Account::toString()
 {
     string temp; 
-    temp = this->id->toString() + "," + this->name + "," + this->address + "," + this->phone + "," + this->type;
+    temp = this->id->toString() + "," + this->name + "," + this->address + "," + this->phone + "," + to_string(this->nRentalID) + "," + this->type;
     for(int i = 0; i < this->nRentalID; i++)
     {
         temp += "\n" + this->listRentalID[i];

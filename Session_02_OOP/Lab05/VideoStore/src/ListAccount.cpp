@@ -79,22 +79,21 @@ void ListAccount::LoadFromFile(string fileName)
             string accountType = sObject[5].substr(0, sObject[5].length());
             
             Account* object;
-            if (accountType.compare("Guest") == 1)
+            if (accountType == "Guest")
             {
                 object = new Guest(sObject[0], sObject[1], sObject[2], sObject[3]);
             }
-            else if (accountType.compare("Regular") == 1)
+            else if (accountType == "Regular")
             {
                 object = new Regular(sObject[0], sObject[1], sObject[2], sObject[3]);
             }
-            else if (accountType.compare("VIP") == 1)
+            else if (accountType == "VIP")
             {
                 object = new VIP(sObject[0], sObject[1], sObject[2], sObject[3]);
             }
             else
             {
-                cout << accountType << endl;
-                cout << "ERROR" << endl;
+                cout << "ACCOUNT file is ERROR" << endl;
             }
             
             int numberOfRental = stoi(sObject[4]);
@@ -116,6 +115,24 @@ void ListAccount::LoadFromFile(string fileName)
     {
         cout << "Cannot access file " << fileName << endl;
     }   
+}
+
+void ListAccount::SaveToFile(string fileName)
+{
+    fstream f(fileName, ios::out | ios::trunc);
+
+    if(f.is_open())
+    {
+        for(int i = 0; i < this->size; i++)
+        {
+            f << this->listAccount[i]->toString() << endl;
+        }
+    }
+    else
+    {
+        cout << "Cannot access file " << fileName << endl;
+    }
+    
 }
 
 void ListAccount::PrintAllAccountInfo()

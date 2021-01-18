@@ -164,6 +164,24 @@ void ListVideo::LoadFromFile(string fileName)
     }   
 }
 
+void ListVideo::SaveToFile(string fileName)
+{
+    fstream f(fileName, ios::out | ios::trunc);
+
+    if(f.is_open())
+    {
+        for(NodeVideo* p = this->head; p != NULL; p = p->getNext())
+        {
+            f << p->getVideo()->toString() << endl;
+        }
+    }
+    else
+    {
+        cout << "Cannot access file " << fileName << endl;
+    }
+    
+}
+
 void ListVideo::Print()
 {
     NodeVideo* p = this->head;

@@ -44,6 +44,7 @@ class ListVideo
         void Remove(Video* video);
 
         void LoadFromFile(string fileName);
+        void SaveToFile(string fileName);
         
         void Print();
 
