@@ -9,7 +9,7 @@
 
 using namespace std;
 
-#define MAX 100;
+#define MAX 100
 
 int main()
 {
